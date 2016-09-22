@@ -6,6 +6,7 @@ using Terraria;
 using Terraria.Graphics.Shaders;
 using Terraria.ModLoader;
 using Terraria.ID;
+using ShaderLib.Shaders;
 
 namespace ShaderLib
 {
@@ -37,6 +38,7 @@ namespace ShaderLib
 			//Save the state of the vanilla shader listings.
 			vanillaShaders = new List<ArmorShaderData>(ShaderReflections.GetShaderList());
 			vanillaBindings = new Dictionary<int, int>(ShaderReflections.GetShaderBindings());
+			ProjectileShader.hooks = new List<Func<int, int>>();
 
 			unLinkedItems.Add(ItemType("TestMetaDye"));
 

@@ -75,6 +75,12 @@ namespace ShaderLib.Dyes
 			else components.Add(entry, effect);
 		}
 
+		/// <summary>
+		/// A method for manual component additions.
+		/// Good for when an Item isn't available.
+		/// </summary>
+		/// <param name="entry">Tuple(mod name, item name)</param>
+		/// <param name="effect">DyeEffects flags</param>
 		public void AddManualComponent(Tuple<string, string> entry, DyeEffects effect){
 			int type;
 			if(entry.Item1 == "Terraria") {

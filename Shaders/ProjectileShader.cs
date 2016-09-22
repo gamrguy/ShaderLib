@@ -15,12 +15,23 @@ namespace ShaderLib.Shaders
 {
 	public class ProjectileShader : GlobalProjectile
 	{
+		/// <summary>
+		/// List of hooks for changing shader on projectiles.
+		/// </summary>
+		public static List<Func<int, int>> hooks;
+
 		public override bool PreDraw(Projectile projectile, SpriteBatch spriteBatch, Color lightColor)
 		{
-			ProjectileShaderInfo projInfo = projectile.GetModInfo<ProjectileShaderInfo>(mod);
+			//ProjectileShaderInfo projInfo = projectile.GetModInfo<ProjectileShaderInfo>(mod);
+			int shaderID = 0;
+
+			//Apply hooks
+			foreach(var hook in hooks) {
+				shaderID = hook(shaderID);
+			}
 
 			//Only affect projectiles with shaders
-			if(projInfo.shaderID > 0) {
+			if(shaderID > 0) {
 				spriteBatch.End();
 				spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, SamplerState.LinearClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise, null, Matrix.CreateScale(1f, 1f, 1f) * Matrix.CreateRotationZ(0f) * Matrix.CreateTranslation(new Vector3(0f, 0f, 0f)));
 
@@ -30,7 +41,7 @@ namespace ShaderLib.Shaders
 				data.scale = new Vector2(projectile.scale, projectile.scale);
 				data.texture = Main.projectileTexture[projectile.type];
 				data.sourceRect = data.texture.Frame(1, Main.projFrames[projectile.type], 0, projectile.frame);
-				GameShaders.Armor.ApplySecondary(projInfo.shaderID, Main.player[projectile.owner], data);
+				GameShaders.Armor.ApplySecondary(shaderID, Main.player[projectile.owner], data);
 
 				//only apply custom drawing to projectiles without it
 				if(projectile.modProjectile == null || projectile.modProjectile.PreDraw(spriteBatch, lightColor)) {

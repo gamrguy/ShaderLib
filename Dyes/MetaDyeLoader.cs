@@ -27,16 +27,16 @@ namespace ShaderLib.Dyes
 				} else {
 					writer.Write(pair.Key.Item2);
 				}
-				ErrorLogger.Log("Wrote item: " + pair.Key.Item1 + "/" + pair.Key.Item2); 
+				//ErrorLogger.Log("Wrote item: " + pair.Key.Item1 + "/" + pair.Key.Item2); 
 			}
-			ErrorLogger.Log("Finished saving");
+			//ErrorLogger.Log("Finished saving");
 		}
 
 		public override void LoadCustomData(Item item, BinaryReader reader)
 		{
 			MetaDyeInfo info = item.GetModInfo<MetaDyeInfo>(mod);
 			byte num = reader.ReadByte();
-			ErrorLogger.Log("Beginning load...");
+			//ErrorLogger.Log("Beginning load...");
 			info.components.Clear();
 
 			for(int i = 0; i < num; i++) {
@@ -47,13 +47,13 @@ namespace ShaderLib.Dyes
 				} else {
 					info.AddManualComponent(new Tuple<string, string>(modName, reader.ReadString()), effect);
 				}
-				ErrorLogger.Log("Loaded item from mod: " + modName);
+				//ErrorLogger.Log("Loaded item from mod: " + modName);
 			}
 
 			int test = FindPreexistingShader(info);
 			if(test == -1) {
 				info.fakeItemID = ShaderReflections.BindArmorShaderNoID<ModArmorShaderData>(info.GetDataFromComponents());
-				ErrorLogger.Log("No preexisting shader found, creating: " + info.fakeItemID);
+				//ErrorLogger.Log("No preexisting shader found, creating: " + info.fakeItemID);
 				return;
 			} else {
 				info.fakeItemID = test;
@@ -71,7 +71,7 @@ namespace ShaderLib.Dyes
 			int test = ShaderReflections.GetShaderList().FindIndex(cond);
 			foreach(KeyValuePair<int, int> pair in ShaderReflections.GetShaderBindings()) {
 				if(pair.Value == test+1) {
-					ErrorLogger.Log("Found preexisting shader: " + info.fakeItemID);
+					//ErrorLogger.Log("Found preexisting shader: " + info.fakeItemID);
 					return pair.Key;
 				}
 			}
