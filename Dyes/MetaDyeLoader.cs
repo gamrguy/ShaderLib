@@ -4,6 +4,7 @@ using System.IO;
 using Terraria;
 using Terraria.Graphics.Shaders;
 using Terraria.ModLoader;
+using ShaderLib.Shaders;
 
 namespace ShaderLib.Dyes
 {
@@ -27,16 +28,13 @@ namespace ShaderLib.Dyes
 				} else {
 					writer.Write(pair.Key.Item2);
 				}
-				//ErrorLogger.Log("Wrote item: " + pair.Key.Item1 + "/" + pair.Key.Item2); 
 			}
-			//ErrorLogger.Log("Finished saving");
 		}
 
 		public override void LoadCustomData(Item item, BinaryReader reader)
 		{
 			MetaDyeInfo info = item.GetModInfo<MetaDyeInfo>(mod);
 			byte num = reader.ReadByte();
-			//ErrorLogger.Log("Beginning load...");
 			info.components.Clear();
 
 			for(int i = 0; i < num; i++) {
@@ -47,31 +45,36 @@ namespace ShaderLib.Dyes
 				} else {
 					info.AddManualComponent(new Tuple<string, string>(modName, reader.ReadString()), effect);
 				}
-				//ErrorLogger.Log("Loaded item from mod: " + modName);
 			}
 
-			int test = FindPreexistingShader(info);
+			int test = FindPreexistingShader(info.components);
 			if(test == -1) {
-				info.fakeItemID = ShaderReflections.BindArmorShaderNoID<ModArmorShaderData>(info.GetDataFromComponents());
-				//ErrorLogger.Log("No preexisting shader found, creating: " + info.fakeItemID);
+				info.fakeItemID = ShaderReflections.BindArmorShaderNoID<ModArmorShaderData>(MetaDyeInfo.GetDataFromComponents(info.components));
+				ErrorLogger.Log("Added meta shader at " + info.fakeItemID);
 				return;
 			} else {
 				info.fakeItemID = test;
+				ErrorLogger.Log("Found preexisting shader at " + info.fakeItemID);
+				return;
 			}
 
-			ErrorLogger.Log("Error! Shader not set!");
+			//ErrorLogger.Log("Error! Shader not set!");
 		}
 
-		public static int FindPreexistingShader(MetaDyeInfo info){
+		/// <summary>
+		/// Returns the bound fake item ID of a meta shader if it already exists. -1 otherwise.
+		/// </summary>
+		/// <returns>Bound fake item ID of a preexisting meta shader.</returns>
+		/// <param name="components">Components of the meta shader.</param>
+		public static int FindPreexistingShader(Dictionary<Tuple<string, string>, MetaDyeInfo.DyeEffects> components){
 			System.Predicate<ArmorShaderData> cond = new System.Predicate<ArmorShaderData>(delegate(ArmorShaderData obj) {
 				if(obj as MetaArmorShaderData == null) return false;
-				return info.GetDataFromComponents().Equals(obj);
+				return MetaDyeInfo.GetDataFromComponents(components).Equals(obj);
 			});
 
 			int test = ShaderReflections.GetShaderList().FindIndex(cond);
 			foreach(KeyValuePair<int, int> pair in ShaderReflections.GetShaderBindings()) {
 				if(pair.Value == test+1) {
-					//ErrorLogger.Log("Found preexisting shader: " + info.fakeItemID);
 					return pair.Key;
 				}
 			}

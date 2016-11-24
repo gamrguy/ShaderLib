@@ -6,7 +6,7 @@ using Terraria.DataStructures;
 using Terraria.Graphics.Shaders;
 using Terraria.ModLoader;
 
-namespace ShaderLib
+namespace ShaderLib.Shaders
 {
 	/// <summary>
 	/// A class designed for the creation of custom shaders.

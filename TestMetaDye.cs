@@ -4,6 +4,7 @@ using Terraria.Graphics.Shaders;
 using Terraria.ID;
 using Terraria.ModLoader;
 using ShaderLib.Dyes;
+using ShaderLib.Shaders;
 
 namespace ShaderLib
 {
@@ -33,12 +34,12 @@ namespace ShaderLib
 			meta.SetEffect(player.inventory[0], MetaDyeInfo.DyeEffects.PRIMARY);
 			meta.SetEffect(player.inventory[1], MetaDyeInfo.DyeEffects.SECONDARY);
 			meta.SetEffect(player.inventory[2], MetaDyeInfo.DyeEffects.TYPE | MetaDyeInfo.DyeEffects.SATURATION);
-			meta.fakeItemID = MetaDyeLoader.FindPreexistingShader(meta);
+			meta.fakeItemID = MetaDyeLoader.FindPreexistingShader(meta.components);
 			if(meta.fakeItemID != -1) {
 				Main.NewText(meta.fakeItemID.ToString());
 				return true;
 			}
-			meta.fakeItemID = ShaderReflections.BindArmorShaderNoID<ModArmorShaderData>(meta.GetDataFromComponents());
+			meta.fakeItemID = ShaderReflections.BindArmorShaderNoID<ModArmorShaderData>(MetaDyeInfo.GetDataFromComponents(meta.components));
 			Main.NewText(meta.fakeItemID.ToString());
 
 			return true;

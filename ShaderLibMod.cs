@@ -35,22 +35,36 @@ namespace ShaderLib
 
 		public override void Load()
 		{
+			/*foreach(var pass in Main.pixelShader.CurrentTechnique.Passes) {
+				ErrorLogger.Log(pass.Name);
+			}*/
+
 			//Save the state of the vanilla shader listings.
-			vanillaShaders = new List<ArmorShaderData>(ShaderReflections.GetShaderList());
-			vanillaBindings = new Dictionary<int, int>(ShaderReflections.GetShaderBindings());
-			ProjectileShader.hooks = new List<Func<int, int>>();
+			if(Main.netMode != 2) {
+				vanillaShaders = new List<ArmorShaderData>(ShaderReflections.GetShaderList());
+				vanillaBindings = new Dictionary<int, int>(ShaderReflections.GetShaderBindings());
+			}
+			ProjectileShader.hooks = new List<Func<int, Projectile, int>>();
+			ItemShader.preDrawInv = new List<Func<int, Item, int>>();
+			ItemShader.preDrawWorld = new List<Func<int, Item, int>>();
+			NPCShader.hooks = new List<Func<int, NPC, int>>();
 
 			unLinkedItems.Add(ItemType("TestMetaDye"));
 
-			ShaderReflections.BindArmorShaderWithID<TestRainbowShader>(ItemType("TestRainbowDye"), new TestRainbowShader(Main.pixelShader, "ArmorColored"));
+			if(Main.netMode != 2) {
+				ShaderReflections.BindArmorShaderWithID<TestRainbowShader>(ItemType("TestRainbowDye"), new TestRainbowShader(Main.pixelShader, "ArmorColored"));
+				ShaderReflections.BindArmorShaderWithID<TestRainbowShader>(ItemType("TestPlaidDye"), new TestRainbowShader(Main.pixelShader, "ArmorVortex"));
+			}
 		}
 
 		public override void Unload()
 		{
-			//Reset the shader listings to the vanilla state.
-			ShaderReflections.SetShaderList(vanillaShaders);
-			ShaderReflections.SetShaderBindings(vanillaBindings);
-			ShaderReflections.customShaders = 0;
+			if(Main.netMode != 2) {
+				//Reset the shader listings to the vanilla state.
+				ShaderReflections.SetShaderList(vanillaShaders);
+				ShaderReflections.SetShaderBindings(vanillaBindings);
+				ShaderReflections.customShaders = 0;
+			}
 		}
 	}
 }

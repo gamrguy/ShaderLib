@@ -5,6 +5,7 @@ using Terraria;
 using Terraria.DataStructures;
 using Terraria.Graphics.Shaders;
 using Terraria.ModLoader;
+using ShaderLib.Shaders;
 
 namespace ShaderLib
 {

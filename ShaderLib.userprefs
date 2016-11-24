@@ -1,0 +1,17 @@
+﻿<Properties>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="../ItemCustomizer/Customizer/UIPlayer.cs">
+    <Files>
+      <File FileName="ShaderLibMod.cs" Line="53" Column="4" />
+      <File FileName="../ItemCustomizer/CustomizerProjectile.cs" Line="38" Column="34" />
+      <File FileName="../ItemCustomizer/CustomizerMod.cs" Line="75" Column="58" />
+      <File FileName="../ItemCustomizer/CustomizerPlayer.cs" Line="48" Column="53" />
+      <File FileName="../ItemCustomizer/Customizer/CustomizerItemInfo.cs" Line="42" Column="2" />
+      <File FileName="../ItemCustomizer/Customizer/UIPlayer.cs" Line="1" Column="1" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>

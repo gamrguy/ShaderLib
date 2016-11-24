@@ -8,7 +8,7 @@ using Terraria.Graphics.Shaders;
 using Terraria.ModLoader;
 using ShaderLib.Dyes;
 
-namespace ShaderLib
+namespace ShaderLib.Shaders
 {
 	/// <summary>
 	/// A class designed for the creation of custom shaders.

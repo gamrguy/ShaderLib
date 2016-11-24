@@ -11,18 +11,19 @@ namespace ShaderLib.Shaders
 {
 	public class ItemShader : GlobalItem
 	{
-		public List<Func<int, int>> preDrawInv;
-		public List<Func<int, int>> preDrawWorld;
+		public static List<Func<int, Item, int>> preDrawInv;
+		public static List<Func<int, Item, int>> preDrawWorld;
 
 		public override bool PreDrawInInventory(Item item, SpriteBatch spriteBatch, Vector2 position, Rectangle frame, Color drawColor, Color itemColor, Vector2 origin, float scale)
 		{
-			//CustomizerItemInfo info = item.GetModInfo<CustomizerItemInfo>(mod);
-
 			int shaderID = 0;
 
 			foreach(var hook in preDrawInv) {
-				shaderID = hook(shaderID);
+				shaderID = hook(shaderID, item);
 			}
+
+			//BlendState test = BlendState.Additive;
+			//test.ColorBlendFunction = BlendFunction.Subtract;
 
 			spriteBatch.End();
 			spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, SamplerState.LinearClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise, null, Matrix.CreateScale(1f, 1f, 1f) * Matrix.CreateRotationZ(0f) * Matrix.CreateTranslation(new Vector3(0f, 0f, 0f)));
@@ -44,14 +45,14 @@ namespace ShaderLib.Shaders
 			spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, SamplerState.LinearClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise, null, Matrix.CreateScale(1f, 1f, 1f) * Matrix.CreateRotationZ(0f) * Matrix.CreateTranslation(new Vector3(0f, 0f, 0f)));
 		}
 
-		public override bool PreDrawInWorld(Item item, SpriteBatch spriteBatch, Color lightColor, Color alphaColor, ref float rotation, ref float scale)
+		public override bool PreDrawInWorld(Item item, SpriteBatch spriteBatch, Color lightColor, Color alphaColor, ref float rotation, ref float scale, int whoAmI)
 		{
 			//CustomizerItemInfo info = item.GetModInfo<CustomizerItemInfo>(mod);
 
 			int shaderID = 0;
 
 			foreach(var hook in preDrawWorld) {
-				shaderID = hook(shaderID);
+				shaderID = hook(shaderID, item);
 			}
 
 			spriteBatch.End();
@@ -69,7 +70,7 @@ namespace ShaderLib.Shaders
 			return true;
 		}
 
-		public override void PostDrawInWorld(Item item, SpriteBatch spriteBatch, Color lightColor, Color alphaColor, float rotation, float scale)
+		public override void PostDrawInWorld(Item item, SpriteBatch spriteBatch, Color lightColor, Color alphaColor, float rotation, float scale, int whoAmI)
 		{
 			spriteBatch.End();
 			spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, SamplerState.LinearClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise, null, Matrix.CreateScale(1f, 1f, 1f) * Matrix.CreateRotationZ(0f) * Matrix.CreateTranslation(new Vector3(0f, 0f, 0f)));

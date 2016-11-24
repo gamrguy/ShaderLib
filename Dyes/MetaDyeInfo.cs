@@ -8,6 +8,7 @@ using Terraria.DataStructures;
 using Terraria.Graphics.Shaders;
 using Terraria.ID;
 using Terraria.ModLoader;
+using ShaderLib.Shaders;
 
 namespace ShaderLib.Dyes
 {
@@ -112,10 +113,9 @@ namespace ShaderLib.Dyes
 		/// on the given components.
 		/// </summary>
 		/// <returns>The data from components.</returns>
-		public ModArmorShaderData GetDataFromComponents(){
+		public static ModArmorShaderData GetDataFromComponents(Dictionary<Tuple<string, string>, DyeEffects> components){
 			MetaArmorShaderData result = new MetaArmorShaderData(Main.pixelShader, "ArmorColored");
 			foreach(KeyValuePair<Tuple<string, string>, DyeEffects> pair in components) {
-				//ErrorLogger.Log("Applying component: " + pair.Key.Item1 + "/" + pair.Key.Item2);
 				int type;
 				if(pair.Key.Item1 == "Terraria") {
 					type = int.Parse(pair.Key.Item2);

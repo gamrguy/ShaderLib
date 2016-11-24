@@ -18,7 +18,7 @@ namespace ShaderLib.Shaders
 		/// <summary>
 		/// List of hooks for changing shader on projectiles.
 		/// </summary>
-		public static List<Func<int, int>> hooks;
+		public static List<Func<int, Projectile, int>> hooks;
 
 		public override bool PreDraw(Projectile projectile, SpriteBatch spriteBatch, Color lightColor)
 		{
@@ -27,7 +27,7 @@ namespace ShaderLib.Shaders
 
 			//Apply hooks
 			foreach(var hook in hooks) {
-				shaderID = hook(shaderID);
+				shaderID = hook(shaderID, projectile);
 			}
 
 			//Only affect projectiles with shaders

@@ -125,9 +125,27 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ShaderLibMod.cs" />
+    <Compile Include="ShaderReflections.cs" />
+    <Compile Include="TestRainbowShader.cs" />
+    <Compile Include="TestRainbowDye.cs" />
+    <Compile Include="Dyes\MetaDyeInfo.cs" />
+    <Compile Include="Dyes\MetaDyeLoader.cs" />
+    <Compile Include="Dyes\ModDyePlayer.cs" />
+    <Compile Include="TestMetaDye.cs" />
+    <Compile Include="Shaders\ProjectileShader.cs" />
+    <Compile Include="Shaders\ItemShader.cs" />
+    <Compile Include="Shaders\NPCShader.cs" />
+    <Compile Include="Shaders\MetaArmorShaderData.cs" />
+    <Compile Include="Shaders\ModArmorShaderData.cs" />
+    <Compile Include="TestPlaidDye.cs" />
+    <Compile Include="Shaders\ShaderIO.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="build.txt" />
     <None Include="description.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Dyes\" />
+    <Folder Include="Shaders\" />
   </ItemGroup>
 </Project>
