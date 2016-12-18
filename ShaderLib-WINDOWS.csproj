@@ -70,7 +70,7 @@
       <HintPath>..\..\..\..\Steam\steamapps\common\Terraria\ModCompile\Microsoft.Xna.Framework.Xact.dll</HintPath>
     </Reference>
     <Reference Include="Terraria">
-      <HintPath>..\..\..\..\Steam\steamapps\common\Terraria\ModCompile\tModLoaderWindows.exe</HintPath>
+      <HintPath>..\..\..\..\..\..\Downloads\tModLoader-1.3.4\ModCompile\tModLoaderWindows.exe</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

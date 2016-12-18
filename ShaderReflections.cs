@@ -14,6 +14,8 @@ namespace ShaderLib
 	/// variables of the ArmorShaderData and ArmorShaderDataSet classes.
 	/// If you are a modder looking to implement this library, this class
 	/// is most likely not for you. You could break something.
+	/// 
+	/// Well, except for the BindShader functions. Those are quite handy.
 	/// </summary>
 	public class ShaderReflections
 	{

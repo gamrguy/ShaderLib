@@ -1,4 +1,4 @@
-﻿using System;
+﻿/*using System;
 using System.Linq;
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
@@ -114,7 +114,7 @@ namespace ShaderLib.Dyes
 		/// </summary>
 		/// <returns>The data from components.</returns>
 		public static ModArmorShaderData GetDataFromComponents(Dictionary<Tuple<string, string>, DyeEffects> components){
-			MetaArmorShaderData result = new MetaArmorShaderData(Main.pixelShader, "ArmorColored");
+			MetaArmorShaderData result = new MetaArmorShaderData(ShaderLibMod.shaderRef, "ArmorColored");
 			foreach(KeyValuePair<Tuple<string, string>, DyeEffects> pair in components) {
 				int type;
 				if(pair.Key.Item1 == "Terraria") {
@@ -193,4 +193,4 @@ namespace ShaderLib.Dyes
 		}
 	}
 }
-
+*/

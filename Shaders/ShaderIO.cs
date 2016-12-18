@@ -26,7 +26,7 @@ namespace ShaderLib.Shaders
 			ArmorShaderData data = GameShaders.Armor.GetShaderFromItemId(itemID);
 
 			//Is meta shader, write components
-			if(data as MetaArmorShaderData != null) {
+			/*if(data as MetaArmorShaderData != null) {
 				var metaData = data as MetaArmorShaderData;
 				writer.Write((byte)ShaderTypes.META);
 				writer.Write((byte)metaData.components.Count);
@@ -37,7 +37,7 @@ namespace ShaderLib.Shaders
 				}
 
 			//Is modded shader, write mod name and item name
-			} else if(data as ModArmorShaderData != null || itemID >= Main.maxItemTypes) {
+			} else*/ if(data as ModArmorShaderData != null || itemID >= Main.maxItemTypes) {
 				writer.Write((byte)ShaderTypes.MODDED);
 				Item dummy = new Item();
 				dummy.SetDefaults(itemID);
@@ -61,7 +61,7 @@ namespace ShaderLib.Shaders
 
 			switch(x) {
 			//Is meta shader, read components and create new meta shader if not already existing
-			case (byte)ShaderTypes.META:
+			/*case (byte)ShaderTypes.META:
 				byte c = reader.ReadByte();
 				var components = new Dictionary<Tuple<string, string>, MetaDyeInfo.DyeEffects>();
 				for(int i = 0; i < c; i++) {
@@ -74,7 +74,7 @@ namespace ShaderLib.Shaders
 				} else {
 					return ShaderReflections.BindArmorShaderNoID<ModArmorShaderData>(result);
 				}
-			
+			*/
 			//Is modded shader, read mod name and item name, grab type
 			case (byte)ShaderTypes.MODDED:
 				string modName = reader.ReadString();

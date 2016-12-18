@@ -44,7 +44,7 @@ namespace ShaderLib.Shaders
 		/// </summary>
 		public Func<Entity, ArmorShaderData> SecondaryShader;
 
-		public ModArmorShaderData(Effect shader, string passName) : base(shader, passName){
+		public ModArmorShaderData(Ref<Effect> shader, string passName) : base(shader, passName){
 			//Set default delegates if not set by user
 			if(UpdatePrimary == null) {
 				UpdatePrimary = new Func<Entity, DrawData?, Color>(delegate(Entity e, DrawData? drawData) {

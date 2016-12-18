@@ -1,4 +1,4 @@
-﻿using System;
+﻿/*using System;
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -18,7 +18,7 @@ namespace ShaderLib.Shaders
 	{
 		public Dictionary<Tuple<string, string>, MetaDyeInfo.DyeEffects> components;
 
-		public MetaArmorShaderData(Effect shader, string passName) : base(shader, passName){
+		public MetaArmorShaderData(Ref<Effect> shader, string passName) : base(shader, passName){
 			components = new Dictionary<Tuple<string, string>, MetaDyeInfo.DyeEffects>();
 		}
 
@@ -43,4 +43,4 @@ namespace ShaderLib.Shaders
 			return base.GetHashCode();
 		}
 	}
-}
+}*/

@@ -14,7 +14,7 @@ namespace ShaderLib
 	/// </summary>
 	public class TestRainbowShader : ModArmorShaderData
 	{
-		public TestRainbowShader(Effect shader, string passName) : base(shader, passName){
+		public TestRainbowShader(Ref<Effect> shader, string passName) : base(shader, passName){
 			saturation = 1.2f;
 			UpdatePrimary = RainbowColor;
 		}

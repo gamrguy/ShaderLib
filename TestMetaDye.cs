@@ -1,4 +1,4 @@
-﻿using System;
+﻿/*using System;
 using Terraria;
 using Terraria.Graphics.Shaders;
 using Terraria.ID;
@@ -45,5 +45,5 @@ namespace ShaderLib
 			return true;
 		}
 	}
-}
+}*/
 

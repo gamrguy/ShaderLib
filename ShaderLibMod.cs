@@ -26,6 +26,8 @@ namespace ShaderLib
 		/// </summary>
 		public const short maxVanillaID = 116;
 
+		public static Ref<Effect> shaderRef = new Ref<Effect>(Main.pixelShader);
+
 		public ShaderLibMod()
 		{
 			Properties = new ModProperties() {
@@ -52,8 +54,8 @@ namespace ShaderLib
 			unLinkedItems.Add(ItemType("TestMetaDye"));
 
 			if(Main.netMode != 2) {
-				ShaderReflections.BindArmorShaderWithID<TestRainbowShader>(ItemType("TestRainbowDye"), new TestRainbowShader(Main.pixelShader, "ArmorColored"));
-				ShaderReflections.BindArmorShaderWithID<TestRainbowShader>(ItemType("TestPlaidDye"), new TestRainbowShader(Main.pixelShader, "ArmorVortex"));
+				ShaderReflections.BindArmorShaderWithID<TestRainbowShader>(ItemType("TestRainbowDye"), new TestRainbowShader(shaderRef, "ArmorColored"));
+				ShaderReflections.BindArmorShaderWithID<TestRainbowShader>(ItemType("TestPlaidDye"), new TestRainbowShader(shaderRef, "ArmorVortex"));
 			}
 		}
 

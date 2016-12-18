@@ -1,37 +1,77 @@
-﻿using System;
+﻿/*using System;
 using System.Collections.Generic;
 using System.IO;
 using Terraria;
 using Terraria.Graphics.Shaders;
 using Terraria.ModLoader;
+using Terraria.ModLoader.IO;
 using ShaderLib.Shaders;
 
 namespace ShaderLib.Dyes
 {
 	public class MetaDyeLoader : GlobalItem
 	{
-		public override bool NeedsCustomSaving(Item item)
+		public override bool NeedsSaving(Item item)
 		{
 			if((mod as ShaderLibMod).unLinkedItems.Contains(item.type)) return true;
 			return false;
 		}
 
-		public override void SaveCustomData(Item item, BinaryWriter writer)
+		public override TagCompound Save(Item item)
 		{
 			MetaDyeInfo info = item.GetModInfo<MetaDyeInfo>(mod);
-			writer.Write((byte)info.components.Count);
+			TagCompound data = new TagCompound();
+
+			//Converts all of the components into a list of TagCompounds
+			IList<TagCompound> components = new List<TagCompound>();
 			foreach(KeyValuePair<Tuple<string, string>, MetaDyeInfo.DyeEffects> pair in info.components){
-				writer.Write((byte)pair.Value);
-				writer.Write(pair.Key.Item1);
+				TagCompound component = new TagCompound();
+				component.SetTag("Effect", (byte)pair.Value);
+				component.SetTag("Mod", pair.Key.Item1);
 				if(pair.Key.Item1 == "Terraria") {
-					writer.Write(int.Parse(pair.Key.Item2));
+					component.SetTag("Item", int.Parse(pair.Key.Item2));
 				} else {
-					writer.Write(pair.Key.Item2);
+					component.SetTag("Item", pair.Key.Item2);
 				}
+				components.Add(component);
 			}
+
+			data.SetTag("Components", components);
+			return data;
 		}
 
-		public override void LoadCustomData(Item item, BinaryReader reader)
+		public override void Load(Item item, TagCompound tag)
+		{
+			MetaDyeInfo info = item.GetModInfo<MetaDyeInfo>(mod);
+			info.components.Clear();
+
+			IList<TagCompound> components = tag.GetList<TagCompound>("Components");
+			foreach(TagCompound component in components) {
+				MetaDyeInfo.DyeEffects effect = (MetaDyeInfo.DyeEffects)tag.GetByte("Effect");
+				string modName = tag.GetString("Mod");
+				if(modName == "Terraria") {
+					info.AddManualComponent(new Tuple<string, string>(modName, tag.GetAsInt("Item").ToString()), effect);
+				} else {
+					info.AddManualComponent(new Tuple<string, string>(modName, tag.GetString("Item")), effect);
+				}
+			}
+
+			int test = FindPreexistingShader(info.components);
+			if(test == -1) {
+				info.fakeItemID = ShaderReflections.BindArmorShaderNoID<ModArmorShaderData>(MetaDyeInfo.GetDataFromComponents(info.components));
+				ErrorLogger.Log("Added meta shader at " + info.fakeItemID);
+				return;
+			} else {
+				info.fakeItemID = test;
+				ErrorLogger.Log("Found preexisting shader at " + info.fakeItemID);
+				return;
+			}
+			
+			//ErrorLogger.Log("Error! Shader not set!");
+		}
+
+		//Legacy load, will be removed later
+		public override void LoadLegacy(Item item, BinaryReader reader)
 		{
 			MetaDyeInfo info = item.GetModInfo<MetaDyeInfo>(mod);
 			byte num = reader.ReadByte();
@@ -82,5 +122,5 @@ namespace ShaderLib.Dyes
 			return -1;
 		}
 	}
-}
+}*/
 
