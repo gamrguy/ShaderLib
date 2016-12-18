@@ -76,10 +76,6 @@
   <ItemGroup>
     <Compile Include="ShaderLibMod.cs" />
     <Compile Include="ShaderReflections.cs" />
-    <Compile Include="TestMetaDye.cs" />
-    <Compile Include="TestPlaidDye.cs" />
-    <Compile Include="TestRainbowDye.cs" />
-    <Compile Include="TestRainbowShader.cs" />
     <Compile Include="Dyes\MetaDyeInfo.cs" />
     <Compile Include="Dyes\MetaDyeLoader.cs" />
     <Compile Include="Dyes\ModDyePlayer.cs" />

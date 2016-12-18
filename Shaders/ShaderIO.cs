@@ -12,21 +12,24 @@ namespace ShaderLib.Shaders
 {
 	public class ShaderIO
 	{
-		private enum ShaderTypes
+		//This is just old legacy code. It's totally worthless and overcomplicated.
+		//In fact, I think I'll just ditch this entirely. With the new NBT system, there's no data limits.
+		//If I need to store shader data from a dye, I can just save the whole item.
+		/*private enum ShaderTypes
 		{
 			VANILLA, MODDED, META
-		}
+		}*/
 
 		/// <summary>
 		/// Writes info on an armor shader to be loaded later.
 		/// </summary>
 		/// <param name="itemID">Bound item ID of the shader.</param>
 		/// <param name="writer">The writer from your SaveCustomData etc. hook.</param>
-		public static void WriteArmorShader(int itemID, BinaryWriter writer){
+		/*public static void WriteArmorShader(int itemID, BinaryWriter writer){
 			ArmorShaderData data = GameShaders.Armor.GetShaderFromItemId(itemID);
 
 			//Is meta shader, write components
-			/*if(data as MetaArmorShaderData != null) {
+			if(data as MetaArmorShaderData != null) {
 				var metaData = data as MetaArmorShaderData;
 				writer.Write((byte)ShaderTypes.META);
 				writer.Write((byte)metaData.components.Count);
@@ -37,7 +40,7 @@ namespace ShaderLib.Shaders
 				}
 
 			//Is modded shader, write mod name and item name
-			} else*/ if(data as ModArmorShaderData != null || itemID >= Main.maxItemTypes) {
+			} else if(data as ModArmorShaderData != null || itemID >= Main.maxItemTypes) {
 				writer.Write((byte)ShaderTypes.MODDED);
 				Item dummy = new Item();
 				dummy.SetDefaults(itemID);
@@ -61,7 +64,7 @@ namespace ShaderLib.Shaders
 
 			switch(x) {
 			//Is meta shader, read components and create new meta shader if not already existing
-			/*case (byte)ShaderTypes.META:
+			case (byte)ShaderTypes.META:
 				byte c = reader.ReadByte();
 				var components = new Dictionary<Tuple<string, string>, MetaDyeInfo.DyeEffects>();
 				for(int i = 0; i < c; i++) {
@@ -74,7 +77,7 @@ namespace ShaderLib.Shaders
 				} else {
 					return ShaderReflections.BindArmorShaderNoID<ModArmorShaderData>(result);
 				}
-			*/
+
 			//Is modded shader, read mod name and item name, grab type
 			case (byte)ShaderTypes.MODDED:
 				string modName = reader.ReadString();
@@ -90,7 +93,6 @@ namespace ShaderLib.Shaders
 				ErrorLogger.Log("Error! Corrupted shader data!");
 				return -1;
 			}
-		}
+		}*/
 	}
 }
-

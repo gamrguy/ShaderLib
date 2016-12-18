@@ -14,18 +14,21 @@ namespace ShaderLib
 	{
 		/// <summary>
 		/// Which items are not directly associated with a shader ID.
+		/// This is currently unused, as the meta dyes system is unfinished.
+		/// ...It'll probably be moved to a different mod entirely.
 		/// </summary>
-		public List<int> unLinkedItems = new List<int>();
+		//public List<int> unLinkedItems = new List<int>();
 
 		//These store the vanilla shader lists, so that they can be reset when the mod is unloaded.
-		public List<ArmorShaderData> vanillaShaders;
-		public Dictionary<int, int> vanillaBindings;
+		private List<ArmorShaderData> vanillaShaders;
+		private Dictionary<int, int> vanillaBindings;
 
 		/// <summary>
 		/// The highest shader ID in the vanilla game.
 		/// </summary>
 		public const short maxVanillaID = 116;
 
+		//Provides easy access to this object now needed instead of pixelShader directly.
 		public static Ref<Effect> shaderRef = new Ref<Effect>(Main.pixelShader);
 
 		public ShaderLibMod()
@@ -37,10 +40,6 @@ namespace ShaderLib
 
 		public override void Load()
 		{
-			/*foreach(var pass in Main.pixelShader.CurrentTechnique.Passes) {
-				ErrorLogger.Log(pass.Name);
-			}*/
-
 			//Save the state of the vanilla shader listings.
 			if(Main.netMode != 2) {
 				vanillaShaders = new List<ArmorShaderData>(ShaderReflections.GetShaderList());
@@ -50,13 +49,6 @@ namespace ShaderLib
 			ItemShader.preDrawInv = new List<Func<int, Item, int>>();
 			ItemShader.preDrawWorld = new List<Func<int, Item, int>>();
 			NPCShader.hooks = new List<Func<int, NPC, int>>();
-
-			unLinkedItems.Add(ItemType("TestMetaDye"));
-
-			if(Main.netMode != 2) {
-				ShaderReflections.BindArmorShaderWithID<TestRainbowShader>(ItemType("TestRainbowDye"), new TestRainbowShader(shaderRef, "ArmorColored"));
-				ShaderReflections.BindArmorShaderWithID<TestRainbowShader>(ItemType("TestPlaidDye"), new TestRainbowShader(shaderRef, "ArmorVortex"));
-			}
 		}
 
 		public override void Unload()
