@@ -1,5 +1,5 @@
 author = thegamemaster1234
-version = 0.0
+version = 1.0
 displayName = Shader Library
 homepage = http://forums.terraria.org/index.php?threads/tgm1234s-mods.48725/
 hideCode = false
