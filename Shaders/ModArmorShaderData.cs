@@ -14,10 +14,11 @@ namespace ShaderLib.Shaders
 	/// </summary>
 	public class ModArmorShaderData : ArmorShaderData
 	{
-		public Color primary = default(Color);    //The primary color.
-		public Color secondary = default(Color);  //The secondary color.
+		protected ShaderLibMod mod = ShaderLibMod.instance;
+		public Color primary;         //The primary color.
+		public Color secondary;       //The secondary color.
 		public float saturation = 1f; //The saturation of this shader; how much its color shows through. Probably.
-		public Texture2D image;  //Texture to use as a noise image.
+		public Texture2D image;       //Texture to use as a noise image.
 
 		/// <summary>
 		/// Called before the shader is applied. Allows customization of the shader's primary color.
@@ -41,6 +42,7 @@ namespace ShaderLib.Shaders
 
 		/// <summary>
 		/// Called when the secondary shader is requested.
+		/// This is what's used for things such as dust emitted from dyed objects.
 		/// </summary>
 		public Func<Entity, ArmorShaderData> SecondaryShader;
 
@@ -79,6 +81,10 @@ namespace ShaderLib.Shaders
 		public override ArmorShaderData GetSecondaryShader(Entity entity)
 		{
 			return SecondaryShader(entity);
+		}
+
+		public string GetPassName() {
+			return _passName;
 		}
 	}
 }

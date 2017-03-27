@@ -46,6 +46,14 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSHARP.Targets" />
   <ProjectExtensions>
     <VisualStudio AllowExistingFolder="true" />
+    <MonoDevelop>
+      <Properties>
+        <Policies>
+          <TextStylePolicy inheritsSet="null" scope="text/x-csharp" />
+          <CSharpFormattingPolicy IndentBlock="True" IndentBraces="False" IndentSwitchCaseSection="True" LabelPositioning="OneLess" NewLinesForBracesInTypes="True" NewLinesForBracesInMethods="True" NewLinesForBracesInProperties="False" NewLinesForBracesInAccessors="False" NewLinesForBracesInAnonymousMethods="False" NewLinesForBracesInControlBlocks="False" NewLinesForBracesInAnonymousTypes="False" NewLinesForBracesInObjectCollectionArrayInitializers="False" NewLinesForBracesInLambdaExpressionBody="False" NewLineForCatch="False" NewLineForFinally="False" NewLineForMembersInObjectInit="False" NewLineForMembersInAnonymousTypes="False" NewLineForClausesInQuery="False" SpaceWithinMethodDeclarationParenthesis="False" SpaceBetweenEmptyMethodDeclarationParentheses="False" SpaceWithinMethodCallParentheses="False" SpaceBetweenEmptyMethodCallParentheses="False" SpaceWithinExpressionParentheses="False" SpaceWithinCastParentheses="False" SpaceWithinOtherParentheses="False" SpaceAfterCast="False" SpacesIgnoreAroundVariableDeclaration="False" SpaceBetweenEmptySquareBrackets="False" SpaceWithinSquareBrackets="False" SpaceAfterColonInBaseTypeDeclaration="True" SpaceAfterComma="True" SpaceAfterDot="False" SpaceAfterSemicolonsInForStatement="True" SpaceBeforeColonInBaseTypeDeclaration="True" SpaceBeforeComma="False" SpaceBeforeDot="False" SpaceBeforeSemicolonsInForStatement="False" SpacingAroundBinaryOperator="Single" WrappingPreserveSingleLine="True" WrappingKeepStatementsOnSingleLine="True" PlaceSystemDirectiveFirst="True" IndentSwitchSection="True" NewLineForElse="True" SpacingAfterMethodDeclarationName="False" SpaceAfterMethodCallName="False" SpaceAfterControlFlowStatementKeyword="False" SpaceBeforeOpenSquareBracket="False" inheritsSet="Mono" inheritsScope="text/x-csharp" scope="text/x-csharp" />
+        </Policies>
+      </Properties>
+    </MonoDevelop>
   </ProjectExtensions>
   <PropertyGroup>
   </PropertyGroup>
@@ -80,23 +88,8 @@
     <Reference Include="System.Configuration">
       <HintPath>..\..\..\..\Steam\steamapps\common\Terraria\System.Configuration.dll</HintPath>
     </Reference>
-    <Reference Include="Terraria">
-      <HintPath>..\..\..\..\Steam\steamapps\common\Terraria\Terraria.exe</HintPath>
-    </Reference>
-    <Reference Include="FNA">
-      <HintPath>..\..\..\..\Steam\steamapps\common\Terraria\FNA.dll</HintPath>
-    </Reference>
     <Reference Include="System.Windows.Forms">
       <HintPath>..\..\..\..\Steam\steamapps\common\Terraria\System.Windows.Forms.dll</HintPath>
-    </Reference>
-    <Reference Include="Ionic.Zip.CF">
-      <HintPath>..\..\..\..\Steam\steamapps\common\Terraria\Ionic.Zip.CF.dll</HintPath>
-    </Reference>
-    <Reference Include="Ionic.Zip.Reduced">
-      <HintPath>..\..\..\..\Steam\steamapps\common\Terraria\Ionic.Zip.Reduced.dll</HintPath>
-    </Reference>
-    <Reference Include="Mono.Cecil">
-      <HintPath>..\..\..\..\Steam\steamapps\common\Terraria\Mono.Cecil.dll</HintPath>
     </Reference>
     <Reference Include="Mono.Posix">
       <HintPath>..\..\..\..\Steam\steamapps\common\Terraria\Mono.Posix.dll</HintPath>
@@ -104,17 +97,14 @@
     <Reference Include="Mono.Security">
       <HintPath>..\..\..\..\Steam\steamapps\common\Terraria\Mono.Security.dll</HintPath>
     </Reference>
-    <Reference Include="MP3Sharp">
-      <HintPath>..\..\..\..\Steam\steamapps\common\Terraria\MP3Sharp.dll</HintPath>
-    </Reference>
     <Reference Include="mscorlib">
       <HintPath>..\..\..\..\Steam\steamapps\common\Terraria\mscorlib.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>..\..\..\..\Steam\steamapps\common\Terraria\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Terraria">
+      <HintPath>..\..\..\..\Steam\steamapps\common\Terraria\Terraria.app\Contents\MacOS\Terraria.exe</HintPath>
     </Reference>
-    <Reference Include="Steamworks.NET">
-      <HintPath>..\..\..\..\Steam\steamapps\common\Terraria\Steamworks.NET.dll</HintPath>
+    <Reference Include="FNA">
+      <HintPath>..\..\..\..\Steam\steamapps\common\Terraria\Terraria.app\Contents\MacOS\FNA.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -126,8 +116,6 @@
   <ItemGroup>
     <Compile Include="ShaderLibMod.cs" />
     <Compile Include="ShaderReflections.cs" />
-    <Compile Include="Dyes\MetaDyeInfo.cs" />
-    <Compile Include="Dyes\MetaDyeLoader.cs" />
     <Compile Include="Dyes\ModDyePlayer.cs" />
     <Compile Include="Shaders\ProjectileShader.cs" />
     <Compile Include="Shaders\ItemShader.cs" />

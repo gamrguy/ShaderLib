@@ -16,8 +16,10 @@ namespace ShaderLib
 	/// is most likely not for you. You could break something.
 	/// 
 	/// Well, except for the BindShader functions. Those are quite handy.
+	/// 
+	/// Also, it's internal now, so if you want it you have to use reflection. Have fun with that.
 	/// </summary>
-	public class ShaderReflections
+	static class ShaderReflections
 	{
 		public static int customShaders = 0;
 
@@ -111,18 +113,18 @@ namespace ShaderLib
 		/// <summary>
 		/// Adds a shader without an item ID. Useful for special reasons.
 		/// Technically speaking, this still uses item IDs, but since
-		/// it starts at negative 9000, there should be no issues.
+		/// it starts at the lowest possible int value, there should be no issues.
 		/// </summary>
-		/// <returns>The shader ID of the newly bound shader.</returns>
+		/// <returns>The item ID of the newly bound shader, which can be used to find shader ID</returns>
 		/// <param name="data">ArmorShaderData of the modded shader</param>
-		public static short BindArmorShaderNoID<T>(T data) where T : ArmorShaderData{
+		public static int BindArmorShaderNoID<T>(T data) where T : ArmorShaderData{
 			var list = GetShaderList();
 			var lookup = GetShaderBindings();
 			list.Add(data);
-			lookup.Add(customShaders - 9000, list.Count);
+			lookup.Add(customShaders + int.MinValue, list.Count);
 			IncrementShaderCount();
-			ErrorLogger.Log("Bound unlinked shader with ID: " + (customShaders - 9000));
-			return (short)(customShaders++ - 9000);
+			ErrorLogger.Log("Bound unlinked shader with ID: " + (customShaders + int.MinValue));
+			return customShaders++ + int.MinValue;
 		}
 	}
 }
