@@ -49,6 +49,7 @@ namespace ShaderLib
 			ItemShader.preDrawInv = new List<Func<int, Item, int>>();
 			ItemShader.preDrawWorld = new List<Func<int, Item, int>>();
 			NPCShader.hooks = new List<Func<int, NPC, int>>();
+			Dyes.ModDyePlayer.heldItemHooks = new List<Func<int, Item, Player, int>>();
 
 			instance = this;
 		}
@@ -96,7 +97,7 @@ namespace ShaderLib
 		/// <param name="shaderName">Shader name.</param>
 		/// <param name="data">ModArmorShaderData object.</param>
 		/// <param name="itemID">Item ID to associate with this shader (use for dyes).</param>
-		public int RegisterArmorShader(string modName, string shaderName, ModArmorShaderData data, int itemID = -1) {
+		public int RegisterArmorShader<T>(string modName, string shaderName, T data, int itemID = -1) where T : ModArmorShaderData {
 			int shaderID;
 			if(itemID > 0) {
 				ShaderReflections.BindArmorShaderWithID(itemID, data);
@@ -126,6 +127,46 @@ namespace ShaderLib
 			int shaderID = GameShaders.Armor.GetShaderIdFromItemId(ShaderReflections.BindArmorShaderNoID(data));
 			metaShaderRegistry.Add(shaderID, data);
 			return shaderID;
+		}
+
+		//Hook setter methods, ignores server so mods don't have to :-)
+		//Also acts as security; no hacking the hook lists!
+		public static void AddProjectileShaderHook(Func<int, Projectile, int> hook) {
+			if(Main.netMode != NetmodeID.Server) {
+				ProjectileShader.hooks.Add(hook);
+			}
+		}
+
+		public static void AddNPCShaderHook(Func<int, NPC, int> hook) {
+			if(Main.netMode != NetmodeID.Server) {
+				NPCShader.hooks.Add(hook);
+			}
+		}
+
+		public static void AddItemShaderInventoryHook(Func<int, Item, int> hook) {
+			if(Main.netMode != NetmodeID.Server) {
+				ItemShader.preDrawInv.Add(hook);
+			}
+		}
+
+		public static void AddItemShaderWorldHook(Func<int, Item, int> hook) {
+			if(Main.netMode != NetmodeID.Server) {
+				ItemShader.preDrawWorld.Add(hook);
+			}
+		}
+
+		public static void AddHeldItemShaderHook(Func<int, Item, Player, int> hook)
+		{
+			if(Main.netMode != NetmodeID.Server) {
+				Dyes.ModDyePlayer.heldItemHooks.Add(hook);
+			}
+		}
+
+		public static void AddHeldItemShaderFlameHook(Func<int, Item, Player, int> hook)
+		{
+			if(Main.netMode != NetmodeID.Server) {
+				Dyes.ModDyePlayer.heldItemFlameHooks.Add(hook);
+			}
 		}
 	}
 }

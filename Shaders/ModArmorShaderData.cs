@@ -47,17 +47,7 @@ namespace ShaderLib.Shaders
 		public Func<Entity, ArmorShaderData> SecondaryShader;
 
 		public ModArmorShaderData(Ref<Effect> shader, string passName) : base(shader, passName){
-			//Set default delegates if not set by user
-			if(UpdatePrimary == null) {
-				UpdatePrimary = new Func<Entity, DrawData?, Color>(delegate(Entity e, DrawData? drawData) {
-					return primary;
-				});
-			}
-			if(UpdateSecondary == null) {
-				UpdateSecondary = new Func<Entity, DrawData?, Color>(delegate(Entity e, DrawData? drawData) {
-					return secondary;
-				});
-			}
+			//Set default delegate if not set by user
 			if(SecondaryShader == null) {
 				SecondaryShader = new Func<Entity, ArmorShaderData>(delegate(Entity e) {
 					return this;
@@ -67,8 +57,8 @@ namespace ShaderLib.Shaders
 
 		public override void Apply(Entity e, DrawData? drawData)
 		{
-			UseColor(UpdatePrimary(e, drawData));
-			UseSecondaryColor(UpdateSecondary(e, drawData));
+			if(UpdatePrimary != null) UseColor(UpdatePrimary(e, drawData));
+			if(UpdateSecondary != null) UseSecondaryColor(UpdateSecondary(e, drawData));
 			UseSaturation(saturation);
 			if(image != null) ShaderReflections.SetImage(this as ArmorShaderData, new Ref<Texture2D>(image));
 			SwapProgram(_passName);
@@ -86,5 +76,22 @@ namespace ShaderLib.Shaders
 		public string GetPassName() {
 			return _passName;
 		}
+
+		//New methods to replace the old ones, no more "as ModArmorShaderData" being appended all the time
+		new public ModArmorShaderData UseColor(Color color)
+		{
+			return base.UseColor(color) as ModArmorShaderData;
+		}
+
+		new public ModArmorShaderData UseSecondaryColor(Color color)
+		{
+			return base.UseSecondaryColor(color) as ModArmorShaderData;
+		}
+
+		new public ModArmorShaderData UseSaturation(float sat)
+		{
+			return base.UseSaturation(sat) as ModArmorShaderData;
+		}
+
 	}
 }

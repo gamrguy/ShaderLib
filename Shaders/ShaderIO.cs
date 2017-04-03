@@ -110,8 +110,7 @@ namespace ShaderLib.Shaders
 		/// </summary>
 		/// <returns>The extracted shader ID.</returns>
 		/// <param name="compound">TagCompound to extract the shader from.</param>
-		public static int LoadShader(TagCompound compound) {
-			var savedShader = compound.GetCompound("SavedShader");
+		public static int LoadShader(TagCompound savedShader) {
 			string shaderType = savedShader.GetString("Type");
 
 			//Load vanilla shader; easily identified by unchanging shader ID
@@ -179,6 +178,7 @@ namespace ShaderLib.Shaders
 			if(shaderID <= ShaderLibMod.maxVanillaID) {
 				compound.Set("Type", "Vanilla");
 				compound.Set("ShaderID", shaderID);
+				ErrorLogger.Log("Saving shader of type Vanilla");
 			}
 
 			//Save mod name and shader name if modded shader

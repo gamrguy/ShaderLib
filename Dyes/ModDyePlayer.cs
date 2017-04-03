@@ -1,13 +1,18 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using Terraria;
+using Terraria.DataStructures;
 using Terraria.Graphics.Shaders;
 using Terraria.ModLoader;
-using ShaderLib.Dyes;
 
 namespace ShaderLib.Dyes
 {
 	public class ModDyePlayer : ModPlayer
-	{
+	{	
+		internal static List<Func<int, Item, Player, int>> heldItemHooks;
+		internal static List<Func<int, Item, Player, int>> heldItemFlameHooks;
+
 		public override void ModifyDrawInfo(ref PlayerDrawInfo drawInfo)
 		{
 			//Don't ask. This is the vanilla code that applies dye to the appropriate equip types.
@@ -187,6 +192,52 @@ namespace ShaderLib.Dyes
 				player.cGrapple = GetShaderID(player.miscDyes[4]);
 			}
 			player.cYorai = player.cPet;
+		}
+
+		public PlayerLayer heldItemLayer = new PlayerLayer("ShaderLib", "HeldItemShader", (PlayerDrawInfo drawInfo) => {
+			Player player = drawInfo.drawPlayer;
+
+			//Selects the held mouse item if it's the client-side player AND is holding one; selected inventory item otherwise
+			Item heldItem = (Main.myPlayer == player.whoAmI) && Main.mouseItem.active && !Main.mouseItem.IsAir && Main.mouseItem.type > 0 ? Main.mouseItem : player.inventory[player.selectedItem];
+
+			//Don't cause crashes :-)
+			if(heldItem == null || !heldItem.active || heldItem.IsAir) return;
+			int index = Main.playerDrawData.Count - 1;
+
+			//Don't bother with items that aren't showing (e.g. Arkhalis)
+			if(heldItem.noUseGraphic) return;
+
+			//Handling for applying shaders to flame textures
+			if(heldItem.flame) {
+				int flameShaderID = 0;
+				heldItemHooks.ForEach((hook) => { flameShaderID = hook(flameShaderID, heldItem, player); });
+
+				if(player.itemAnimation > 0 && !player.pulley && flameShaderID > 0) {
+					DrawData data = Main.playerDrawData[index];
+					data.shader = flameShaderID;
+					Main.playerDrawData[index] = data;
+				}
+
+				index -= 1;
+			}
+
+			//Handling for applying shaders to the held item itself
+			int shaderID = 0;
+			heldItemHooks.ForEach((hook) => { shaderID = hook(shaderID, heldItem, player); });
+
+			//Only use shader when player is using/holding an item
+			if(player.itemAnimation > 0 && !player.pulley && shaderID > 0) {
+				DrawData data = Main.playerDrawData[index];
+				data.shader = shaderID;
+				Main.playerDrawData[index] = data;
+			}
+		});
+
+		public override void ModifyDrawLayers(List<PlayerLayer> layers)
+		{
+			if(!Main.gameMenu) {
+				layers.Insert(layers.IndexOf(PlayerLayer.HeldItem) + 1, heldItemLayer);
+			}
 		}
 
 		private int GetShaderID(Item i){

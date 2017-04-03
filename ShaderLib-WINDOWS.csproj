@@ -57,27 +57,8 @@
     <Folder Include="Customizer\" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.Xna.Framework">
-      <HintPath>..\..\..\..\Steam\steamapps\common\Terraria\ModCompile\Microsoft.Xna.Framework.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Xna.Framework.Game">
-      <HintPath>..\..\..\..\Steam\steamapps\common\Terraria\ModCompile\Microsoft.Xna.Framework.Game.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Xna.Framework.Graphics">
-      <HintPath>..\..\..\..\Steam\steamapps\common\Terraria\ModCompile\Microsoft.Xna.Framework.Graphics.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Xna.Framework.Xact">
-      <HintPath>..\..\..\..\Steam\steamapps\common\Terraria\ModCompile\Microsoft.Xna.Framework.Xact.dll</HintPath>
-    </Reference>
-    <Reference Include="Terraria">
-      <HintPath>..\..\..\..\..\..\Downloads\tModLoader-1.3.4\ModCompile\tModLoaderWindows.exe</HintPath>
-    </Reference>
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="ShaderLibMod.cs" />
     <Compile Include="ShaderReflections.cs" />
-    <Compile Include="Dyes\MetaDyeInfo.cs" />
-    <Compile Include="Dyes\MetaDyeLoader.cs" />
     <Compile Include="Dyes\ModDyePlayer.cs" />
     <Compile Include="Shaders\ItemShader.cs" />
     <Compile Include="Shaders\MetaArmorShaderData.cs" />
@@ -89,5 +70,22 @@
   <ItemGroup>
     <None Include="build.txt" />
     <None Include="description.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="tModLoaderWindows">
+      <HintPath>..\..\..\..\Steam\steamapps\common\Terraria\Terraria.app\Contents\MacOS\ModCompile\tModLoaderWindows.exe</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Xna.Framework">
+      <HintPath>..\..\..\..\Steam\steamapps\common\Terraria\Terraria.app\Contents\MacOS\ModCompile\Microsoft.Xna.Framework.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Xna.Framework.Game">
+      <HintPath>..\..\..\..\Steam\steamapps\common\Terraria\Terraria.app\Contents\MacOS\ModCompile\Microsoft.Xna.Framework.Game.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Xna.Framework.Graphics">
+      <HintPath>..\..\..\..\Steam\steamapps\common\Terraria\Terraria.app\Contents\MacOS\ModCompile\Microsoft.Xna.Framework.Graphics.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Xna.Framework.Xact">
+      <HintPath>..\..\..\..\Steam\steamapps\common\Terraria\Terraria.app\Contents\MacOS\ModCompile\Microsoft.Xna.Framework.Xact.dll</HintPath>
+    </Reference>
   </ItemGroup>
 </Project>

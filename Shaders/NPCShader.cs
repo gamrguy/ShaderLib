@@ -12,7 +12,7 @@ namespace ShaderLib.Shaders
 {
 	public class NPCShader : GlobalNPC
 	{
-		public static List<Func<int, NPC, int>> hooks;
+		internal static List<Func<int, NPC, int>> hooks;
 		public override bool PreDraw(NPC npc, SpriteBatch spriteBatch, Color drawColor)
 		{
 			int shaderID = 0;

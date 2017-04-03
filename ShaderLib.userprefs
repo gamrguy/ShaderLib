@@ -1,28 +1,13 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workbench>
-    <Pads>
-      <Pad Id="ProjectPad">
-        <State name="__root__">
-          <Node name="ArmorHairDye" expanded="True">
-            <Node name="ArmorHairDye" expanded="True" />
-          </Node>
-          <Node name="ItemCustomizer" expanded="True" selected="True">
-            <Node name="ItemCustomizer" expanded="True">
-              <Node name="References" expanded="True" />
-              <Node name="Customizer" expanded="True" />
-            </Node>
-          </Node>
-          <Node />
-          <Node name="ShaderLib" expanded="True">
-            <Node name="ShaderLib" expanded="True">
-              <Node name="References" expanded="True" />
-              <Node name="Dyes" expanded="True" />
-              <Node name="Shaders" expanded="True" />
-            </Node>
-          </Node>
-        </State>
-      </Pad>
-    </Pads>
+  <MonoDevelop.Ide.Workbench ActiveDocument="../ItemCustomizer/CustomizerMod.cs">
+    <Files>
+      <File FileName="ShaderLibMod.cs" Line="122" Column="9" />
+      <File FileName="../ItemCustomizer/CustomizerPlayer.cs" Line="31" Column="4" />
+      <File FileName="../ItemCustomizer/CustomizerMod.cs" Line="40" Column="25" />
+      <File FileName="../ItemCustomizer/Customizer/CustomizerItemInfo.cs" Line="12" Column="3" />
+      <File FileName="../SecretDyes/DyesMod.cs" Line="32" Column="4" />
+      <File FileName="../ItemCustomizer/description.txt" Line="17" Column="1" />
+    </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

@@ -11,8 +11,8 @@ namespace ShaderLib.Shaders
 {
 	public class ItemShader : GlobalItem
 	{
-		public static List<Func<int, Item, int>> preDrawInv;
-		public static List<Func<int, Item, int>> preDrawWorld;
+		internal static List<Func<int, Item, int>> preDrawInv;
+		internal static List<Func<int, Item, int>> preDrawWorld;
 
 		public override bool PreDrawInInventory(Item item, SpriteBatch spriteBatch, Vector2 position, Rectangle frame, Color drawColor, Color itemColor, Vector2 origin, float scale)
 		{
