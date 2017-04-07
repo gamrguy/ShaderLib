@@ -1,4 +1,3 @@
-﻿using System;
 using System.Collections.Generic;
 using System.Reflection;
 using Microsoft.Xna.Framework;
@@ -14,9 +13,9 @@ namespace ShaderLib
 	/// variables of the ArmorShaderData and ArmorShaderDataSet classes.
 	/// If you are a modder looking to implement this library, this class
 	/// is most likely not for you. You could break something.
-	/// 
+	///
 	/// Well, except for the BindShader functions. Those are quite handy.
-	/// 
+	///
 	/// Also, it's internal now, so if you want it you have to use reflection. Have fun with that.
 	/// </summary>
 	static class ShaderReflections
@@ -128,4 +127,3 @@ namespace ShaderLib
 		}
 	}
 }
-

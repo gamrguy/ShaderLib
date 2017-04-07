@@ -1,20 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.Graphics.Shaders;
-using Terraria.ModLoader;
-using ShaderLib.Dyes;
 
 namespace ShaderLib.Shaders
 {
 	/// <summary>
 	/// A class designed for the creation of custom shaders by mixing other ones.
 	/// Use of delegate functions allows for maximum customizability.
-	/// 
+	///
 	/// It's basically a niche feature I built for my own use.
 	/// If you think you need it for whatever reason, go ahead, it's right here.
 	/// </summary>
@@ -101,8 +97,8 @@ namespace ShaderLib.Shaders
 			if(other == null) return false;
 			if(other.updatePrimary   == this.updatePrimary   && other.updateSecondary == this.updateSecondary &&
 			   other.preApply        == this.preApply        && other.postApply       == this.postApply       &&
-			   other.secondaryShader == this.secondaryShader && other.noiseImage      == this.noiseImage      && 
-			   other._passName       == this._passName       && other.primary         == this.primary         && 
+			   other.secondaryShader == this.secondaryShader && other.noiseImage      == this.noiseImage      &&
+			   other._passName       == this._passName       && other.primary         == this.primary         &&
 			   other.secondary       == this.secondary       && other.saturation      == this.saturation) {
 				return true;
 			}

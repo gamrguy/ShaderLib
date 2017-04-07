@@ -2,3 +2,8 @@ A library intended to ease the creation of shaders.
 
 This is a dependency mod; it does nothing by itself.
 Other mods may require this mod to be enabled.
+
+Latest Patch (1.0.1):
+- Fixed modded dyes not working on modded accessories (or specific vanilla ones)
+- Held item dyes now apply to held items
+- Flame shader hooks actually work now

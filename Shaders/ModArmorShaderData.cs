@@ -4,7 +4,6 @@ using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.Graphics.Shaders;
-using Terraria.ModLoader;
 
 namespace ShaderLib.Shaders
 {

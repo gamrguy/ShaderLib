@@ -1,14 +1,20 @@
-﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShaderLib", "ShaderLib.csproj", "{656AFCF7-8B8A-4E4D-9F3B-5A7AE2681825}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Mono|Any CPU = Mono|Any CPU
+		Windows|Any CPU = Windows|Any CPU
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{656AFCF7-8B8A-4E4D-9F3B-5A7AE2681825}.Mono|Any CPU.ActiveCfg = Mono|Any CPU
+		{656AFCF7-8B8A-4E4D-9F3B-5A7AE2681825}.Mono|Any CPU.Build.0 = Mono|Any CPU
+		{656AFCF7-8B8A-4E4D-9F3B-5A7AE2681825}.Windows|Any CPU.ActiveCfg = Windows|Any CPU
+		{656AFCF7-8B8A-4E4D-9F3B-5A7AE2681825}.Windows|Any CPU.Build.0 = Windows|Any CPU
 		{656AFCF7-8B8A-4E4D-9F3B-5A7AE2681825}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{656AFCF7-8B8A-4E4D-9F3B-5A7AE2681825}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{656AFCF7-8B8A-4E4D-9F3B-5A7AE2681825}.Release|Any CPU.ActiveCfg = Release|Any CPU

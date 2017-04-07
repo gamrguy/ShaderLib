@@ -1,15 +1,41 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workbench ActiveDocument="../ItemCustomizer/CustomizerMod.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="description.txt">
     <Files>
-      <File FileName="ShaderLibMod.cs" Line="122" Column="9" />
-      <File FileName="../ItemCustomizer/CustomizerPlayer.cs" Line="31" Column="4" />
-      <File FileName="../ItemCustomizer/CustomizerMod.cs" Line="40" Column="25" />
-      <File FileName="../ItemCustomizer/Customizer/CustomizerItemInfo.cs" Line="12" Column="3" />
-      <File FileName="../SecretDyes/DyesMod.cs" Line="32" Column="4" />
-      <File FileName="../ItemCustomizer/description.txt" Line="17" Column="1" />
+      <File FileName="Dyes/ModDyePlayer.cs" Line="215" Column="38" />
+      <File FileName="../../../../../../Downloads/decompiled/Terraria/Item.cs" Line="44" Column="15" />
+      <File FileName="../ItemCustomizer/CustomizerMod.cs" Line="1" Column="1" />
+      <File FileName="../ArmorHairDye/DyeMod.cs" Line="34" Column="67" />
+      <File FileName="build.txt" Line="2" Column="16" />
+      <File FileName="description.txt" Line="8" Column="4" />
     </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="ArmorHairDye" expanded="True">
+            <Node name="ArmorHairDye" expanded="True" />
+          </Node>
+          <Node name="ArmorHairDye-WINDOWS" expanded="True">
+            <Node name="ArmorHairDye-WINDOWS" expanded="True">
+              <Node name="Shaders" expanded="True" />
+            </Node>
+          </Node>
+          <Node name="ItemCustomizer" expanded="True">
+            <Node name="ItemCustomizer" expanded="True" />
+          </Node>
+          <Node name="ShaderLib" expanded="True">
+            <Node name="ShaderLib" expanded="True">
+              <Node name="References" expanded="True" />
+              <Node name="Dyes" expanded="True" />
+              <Node name="Shaders" expanded="True" />
+              <Node name="description.txt" selected="True" />
+            </Node>
+          </Node>
+          <Node />
+        </State>
+      </Pad>
+    </Pads>
   </MonoDevelop.Ide.Workbench>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>

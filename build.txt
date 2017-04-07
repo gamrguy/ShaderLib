@@ -1,10 +1,10 @@
 author = thegamemaster1234
-version = 1.0
+version = 1.0.1
 displayName = Shader Library
 homepage = http://forums.terraria.org/index.php?threads/tgm1234s-mods.48725/
 hideCode = false
 hideResources = false
 includeSource = true
-buildIgnore = *.csproj, *.user, obj/*, bin/*, .vs/*
+buildIgnore = *.csproj, *.user, obj/*, bin/*, .vs/*, .git/*, .DS_Store
 includePDB = true
 noCompile = true

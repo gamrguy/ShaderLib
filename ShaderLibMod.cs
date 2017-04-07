@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
 using Terraria;
 using Terraria.Graphics.Shaders;
 using Terraria.ModLoader;
@@ -50,6 +49,7 @@ namespace ShaderLib
 			ItemShader.preDrawWorld = new List<Func<int, Item, int>>();
 			NPCShader.hooks = new List<Func<int, NPC, int>>();
 			Dyes.ModDyePlayer.heldItemHooks = new List<Func<int, Item, Player, int>>();
+			Dyes.ModDyePlayer.heldItemFlameHooks = new List<Func<int, Item, Player, int>>();
 
 			instance = this;
 		}
@@ -67,7 +67,7 @@ namespace ShaderLib
 		/// <summary>
 		/// Gets a ModArmorShaderData object by mod name and shader name.
 		/// </summary>
-		/// <returns>The ModArmorShaderData object associated with the given mod and shader name, 
+		/// <returns>The ModArmorShaderData object associated with the given mod and shader name,
 		/// or null if one wasn't found.</returns>
 		/// <param name="modName">Name of the mod adding this shader.</param>
 		/// <param name="shaderName">Name of the shader.</param>
@@ -78,7 +78,7 @@ namespace ShaderLib
 		/// <summary>
 		/// Gets a ModArmorShaderData object by mod name and shader name.
 		/// </summary>
-		/// <returns>The ModArmorShaderData object associated with the given mod and shader name, 
+		/// <returns>The ModArmorShaderData object associated with the given mod and shader name,
 		/// or null if one wasn't found.</returns>
 		/// <param name="data">A Tuple object in the format modName, shaderName.</param>
 		public ModArmorShaderData GetModShaderByNames(Tuple<string, string> data) {

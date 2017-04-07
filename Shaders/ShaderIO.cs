@@ -1,15 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using Terraria;
 using Terraria.Graphics.Shaders;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
-using ShaderLib;
-using ShaderLib.Dyes;
 
 
 namespace ShaderLib.Shaders
@@ -92,7 +85,7 @@ namespace ShaderLib.Shaders
 				string modName = reader.ReadString();
 				string itemName = reader.ReadString();
 				return ModLoader.GetMod(modName)?.ItemType(itemName) ?? 0;
-			
+
 			//Is vanilla shader, read and return item type
 			case (byte)ShaderTypes.VANILLA:
 				return reader.ReadInt32();
@@ -128,7 +121,7 @@ namespace ShaderLib.Shaders
 
 			//Load meta shader, a complicated mashup of its own values and other shader's functions
 			else if(shaderType == "Meta") {
-				
+
 				//Get the mod name and shader name of all the possible functions/objects (unused functions are "")
 				var updatePrimary   = new Tuple<string, string>(savedShader.GetString("UpdatePrimaryModName"),   savedShader.GetString("UpdatePrimaryShaderName"));
 				var updateSecondary = new Tuple<string, string>(savedShader.GetString("UpdateSecondaryModName"), savedShader.GetString("UpdateSecondaryShaderName"));

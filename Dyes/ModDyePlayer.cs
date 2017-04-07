@@ -39,47 +39,47 @@ namespace ShaderLib.Dyes
 				int num = x % 10;
 				if (player.dye[num] != null && player.armor[x].type > 0 && player.armor[x].stack > 0 && (x / 10 >= 1 || !player.hideVisual[num] || player.armor[x].wingSlot > 0 || player.armor[x].type == 934) && player.dye[num].modItem != null)
 				{
-					if (player.armor[x].handOnSlot > 0 && player.armor[x].handOnSlot < 19)
+					if (player.armor[x].handOnSlot > 0)
 					{
 						drawInfo.handOnShader = GetShaderID(player.dye[num]);
 					}
-					if (player.armor[x].handOffSlot > 0 && player.armor[x].handOffSlot < 12)
+					if (player.armor[x].handOffSlot > 0)
 					{
 						drawInfo.handOffShader = GetShaderID(player.dye[num]);
 					}
-					if (player.armor[x].backSlot > 0 && player.armor[x].backSlot < 11)
+					if (player.armor[x].backSlot > 0)
 					{
 						drawInfo.backShader = GetShaderID(player.dye[num]);
 					}
-					if (player.armor[x].frontSlot > 0 && player.armor[x].frontSlot < 5)
+					if (player.armor[x].frontSlot > 0)
 					{
 						drawInfo.frontShader = GetShaderID(player.dye[num]);
 					}
-					if (player.armor[x].shoeSlot > 0 && player.armor[x].shoeSlot < 18)
+					if (player.armor[x].shoeSlot > 0)
 					{
 						drawInfo.shoeShader = GetShaderID(player.dye[num]);
 					}
-					if (player.armor[x].waistSlot > 0 && player.armor[x].waistSlot < 12)
+					if (player.armor[x].waistSlot > 0)
 					{
 						drawInfo.waistShader = GetShaderID(player.dye[num]);
 					}
-					if (player.armor[x].shieldSlot > 0 && player.armor[x].shieldSlot < 6)
+					if (player.armor[x].shieldSlot > 0)
 					{
 						drawInfo.shieldShader = GetShaderID(player.dye[num]);
 					}
-					if (player.armor[x].neckSlot > 0 && player.armor[x].neckSlot < 9)
+					if (player.armor[x].neckSlot > 0)
 					{
 						drawInfo.neckShader = GetShaderID(player.dye[num]);
 					}
-					if (player.armor[x].faceSlot > 0 && player.armor[x].faceSlot < 9)
+					if (player.armor[x].faceSlot > 0)
 					{
 						drawInfo.faceShader = GetShaderID(player.dye[num]);
 					}
-					if (player.armor[x].balloonSlot > 0 && player.armor[x].balloonSlot < 16)
+					if (player.armor[x].balloonSlot > 0)
 					{
 						drawInfo.balloonShader = GetShaderID(player.dye[num]);
 					}
-					if (player.armor[x].wingSlot > 0 && player.armor[x].wingSlot < 37)
+					if (player.armor[x].wingSlot > 0)
 					{
 						drawInfo.wingShader = GetShaderID(player.dye[num]);
 					}
@@ -120,47 +120,47 @@ namespace ShaderLib.Dyes
 				int num = x % 10;
 				if (player.dye[num] != null && player.armor[x].type > 0 && player.armor[x].stack > 0 && (x / 10 >= 1 || !player.hideVisual[num] || player.armor[x].wingSlot > 0 || player.armor[x].type == 934) && player.dye[num].modItem != null)
 				{
-					if (player.armor[x].handOnSlot > 0 && player.armor[x].handOnSlot < 19)
+					if (player.armor[x].handOnSlot > 0)
 					{
 						player.cHandOn = GetShaderID(player.dye[num]);
 					}
-					if (player.armor[x].handOffSlot > 0 && player.armor[x].handOffSlot < 12)
+					if (player.armor[x].handOffSlot > 0)
 					{
 						player.cHandOff = GetShaderID(player.dye[num]);
 					}
-					if (player.armor[x].backSlot > 0 && player.armor[x].backSlot < 11)
+					if (player.armor[x].backSlot > 0)
 					{
 						player.cBack = GetShaderID(player.dye[num]);
 					}
-					if (player.armor[x].frontSlot > 0 && player.armor[x].frontSlot < 5)
+					if (player.armor[x].frontSlot > 0)
 					{
 						player.cFront = GetShaderID(player.dye[num]);
 					}
-					if (player.armor[x].shoeSlot > 0 && player.armor[x].shoeSlot < 18)
+					if (player.armor[x].shoeSlot > 0)
 					{
 						player.cShoe = GetShaderID(player.dye[num]);
 					}
-					if (player.armor[x].waistSlot > 0 && player.armor[x].waistSlot < 12)
+					if (player.armor[x].waistSlot > 0)
 					{
 						player.cWaist = GetShaderID(player.dye[num]);
 					}
-					if (player.armor[x].shieldSlot > 0 && player.armor[x].shieldSlot < 6)
+					if (player.armor[x].shieldSlot > 0)
 					{
 						player.cShield = GetShaderID(player.dye[num]);
 					}
-					if (player.armor[x].neckSlot > 0 && player.armor[x].neckSlot < 9)
+					if (player.armor[x].neckSlot > 0)
 					{
 						player.cNeck = GetShaderID(player.dye[num]);
 					}
-					if (player.armor[x].faceSlot > 0 && player.armor[x].faceSlot < 9)
+					if (player.armor[x].faceSlot > 0)
 					{
 						player.cFace = GetShaderID(player.dye[num]);
 					}
-					if (player.armor[x].balloonSlot > 0 && player.armor[x].balloonSlot < 16)
+					if (player.armor[x].balloonSlot > 0)
 					{
 						player.cBalloon = GetShaderID(player.dye[num]);
 					}
-					if (player.armor[x].wingSlot > 0 && player.armor[x].wingSlot < 37)
+					if (player.armor[x].wingSlot > 0)
 					{
 						player.cWings = GetShaderID(player.dye[num]);
 					}
@@ -197,28 +197,32 @@ namespace ShaderLib.Dyes
 		public PlayerLayer heldItemLayer = new PlayerLayer("ShaderLib", "HeldItemShader", (PlayerDrawInfo drawInfo) => {
 			Player player = drawInfo.drawPlayer;
 
-			//Selects the held mouse item if it's the client-side player AND is holding one; selected inventory item otherwise
-			Item heldItem = (Main.myPlayer == player.whoAmI) && Main.mouseItem.active && !Main.mouseItem.IsAir && Main.mouseItem.type > 0 ? Main.mouseItem : player.inventory[player.selectedItem];
+			//Gets the player's held item
+			Item heldItem = player.HeldItem;
 
 			//Don't cause crashes :-)
 			if(heldItem == null || !heldItem.active || heldItem.IsAir) return;
 			int index = Main.playerDrawData.Count - 1;
 
-			//Don't bother with items that aren't showing (e.g. Arkhalis)
-			if(heldItem.noUseGraphic) return;
+			//Don't bother with items that aren't showing (e.g. Arkhalis or... most items, really)
+			if(heldItem.noUseGraphic || (heldItem.useStyle == 0 && heldItem.holdStyle == 0)) return;
 
-			//Handling for applying shaders to flame textures
+			//Handling for applying shaders to flame textures. TODO: Figure out why this affects armor shadow effects
 			if(heldItem.flame) {
 				int flameShaderID = 0;
-				heldItemHooks.ForEach((hook) => { flameShaderID = hook(flameShaderID, heldItem, player); });
+				heldItemFlameHooks.ForEach((hook) => { flameShaderID = hook(flameShaderID, heldItem, player); });
 
-				if(player.itemAnimation > 0 && !player.pulley && flameShaderID > 0) {
-					DrawData data = Main.playerDrawData[index];
-					data.shader = flameShaderID;
-					Main.playerDrawData[index] = data;
+				//Apply to all 7 layers of flame textures, because that's how it is for some bizarre reason
+				for(int i = 0; i < 7; i++) {
+					if((player.itemAnimation > 0 || heldItem.holdStyle > 0) && !player.pulley && flameShaderID > 0) {
+						DrawData data = Main.playerDrawData[index];
+						data.texture = Main.itemFlameTexture[heldItem.type];
+						data.shader = flameShaderID;
+						Main.playerDrawData[index] = data;
+					}
+
+					index -= 1;
 				}
-
-				index -= 1;
 			}
 
 			//Handling for applying shaders to the held item itself
@@ -226,7 +230,7 @@ namespace ShaderLib.Dyes
 			heldItemHooks.ForEach((hook) => { shaderID = hook(shaderID, heldItem, player); });
 
 			//Only use shader when player is using/holding an item
-			if(player.itemAnimation > 0 && !player.pulley && shaderID > 0) {
+			if((player.itemAnimation > 0 || heldItem.holdStyle > 0) && !player.pulley && shaderID > 0) {
 				DrawData data = Main.playerDrawData[index];
 				data.shader = shaderID;
 				Main.playerDrawData[index] = data;
