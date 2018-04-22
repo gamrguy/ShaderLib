@@ -2,6 +2,8 @@
 
 A helper library for modders who wish to do things in Terraria regarding shaders.
 Current features include:
-- Dyeing specific items or NPCs
+- Applying shaders to specific items, projectiles, or NPCs
 - Creation of custom shaders with programmed behaviours
-- Creation of on-the-fly shaders not linked to an item ID
+- Ignoring the 255 base game limit on armor shaders
+
+Further information is contained within this repository's wiki.
