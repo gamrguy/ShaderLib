@@ -36,6 +36,7 @@
     <RunPostBuildEvent>Always</RunPostBuildEvent>
   </PropertyGroup>
   <ItemGroup>
+    <Folder Include="Customizer\" />
   </ItemGroup>
   <ItemGroup>
   </ItemGroup>
@@ -53,10 +54,11 @@
   </ItemGroup>
   <ItemGroup>
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="Customizer\" />
-  </ItemGroup>
-  <ItemGroup>
+    <Compile Include="HookHandler.cs" />
+    <Compile Include="Dyes\VariantHandler.cs" />
+    <Compile Include="BaseHooks.cs" />
     <Compile Include="ShaderLibMod.cs" />
     <Compile Include="ShaderReflections.cs" />
     <Compile Include="Dyes\ModDyePlayer.cs" />
@@ -65,6 +67,7 @@
     <Compile Include="Shaders\ModArmorShaderData.cs" />
     <Compile Include="Shaders\NPCShader.cs" />
     <Compile Include="Shaders\ProjectileShader.cs" />
+    <Compile Include="ShaderUtils.cs" />
     <Compile Include="Shaders\ShaderIO.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -72,9 +75,6 @@
     <None Include="description.txt" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="tModLoaderWindows">
-      <HintPath>..\..\..\..\Steam\steamapps\common\Terraria\Terraria.app\Contents\MacOS\ModCompile\tModLoaderWindows.exe</HintPath>
-    </Reference>
     <Reference Include="Microsoft.Xna.Framework">
       <HintPath>..\..\..\..\Steam\steamapps\common\Terraria\Terraria.app\Contents\MacOS\ModCompile\Microsoft.Xna.Framework.dll</HintPath>
     </Reference>
@@ -84,8 +84,11 @@
     <Reference Include="Microsoft.Xna.Framework.Graphics">
       <HintPath>..\..\..\..\Steam\steamapps\common\Terraria\Terraria.app\Contents\MacOS\ModCompile\Microsoft.Xna.Framework.Graphics.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Xna.Framework.Xact">
-      <HintPath>..\..\..\..\Steam\steamapps\common\Terraria\Terraria.app\Contents\MacOS\ModCompile\Microsoft.Xna.Framework.Xact.dll</HintPath>
+    <Reference Include="ReLogic">
+      <HintPath>..\..\..\..\..\..\Downloads\ReLogic.dll</HintPath>
+    </Reference>
+    <Reference Include="Terraria">
+      <HintPath>..\..\..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Terraria\Terraria.exe</HintPath>
     </Reference>
   </ItemGroup>
 </Project>

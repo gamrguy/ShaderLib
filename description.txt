@@ -1,4 +1,8 @@
 A library intended to ease the creation of shaders.
 
-This is a dependency mod; it does nothing by itself.
+This is a dependency mod.
 Other mods may require this mod to be enabled.
+
+Automatic functions of this mod:
+- Fixes look of special dyes on pets and grappling hooks
+- Allows use of armor dye on Familiar Wig

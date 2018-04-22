@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Reflection;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -19,7 +18,7 @@ namespace ShaderLib
 	/// 
 	/// Also, it's internal now, so if you want it you have to use reflection. Have fun with that.
 	/// </summary>
-	static class ShaderReflections
+	internal static class ShaderReflections
 	{
 		public static int customShaders = 0;
 
@@ -87,6 +86,11 @@ namespace ShaderLib
 		public static void SetShaderBindings(Dictionary<int, int> dict){
 			var field = GetSetFieldInfo("_shaderLookupDictionary");
 			field.SetValue(GameShaders.Armor, dict);
+		}
+
+		public static void SetShaderCount(int count) {
+			var field = GetSetFieldInfo("_shaderDataCount");
+			field.SetValue(GameShaders.Armor, count);
 		}
 
 		public static void IncrementShaderCount(){

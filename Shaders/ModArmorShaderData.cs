@@ -1,97 +1,98 @@
-﻿using System;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.Graphics.Shaders;
 using Terraria.ModLoader;
+using Terraria.ModLoader.IO;
 
 namespace ShaderLib.Shaders
 {
 	/// <summary>
 	/// A class designed for the creation of custom shaders.
-	/// Use of delegate functions allows for maximum customizability.
 	/// </summary>
-	public class ModArmorShaderData : ArmorShaderData
+	public abstract class ModArmorShaderData : ArmorShaderData
 	{
-		protected ShaderLibMod mod = ShaderLibMod.instance;
-		public Color primary;         //The primary color.
-		public Color secondary;       //The secondary color.
-		public float saturation = 1f; //The saturation of this shader; how much its color shows through. Probably.
-		public Texture2D image;       //Texture to use as a noise image.
+		public Mod Mod { get; internal set; }
+		public virtual string Name => GetType().Name;
+		public int ID { get; internal set; }
+		public virtual int? BoundItemID => null;
 
-		/// <summary>
-		/// Called before the shader is applied. Allows customization of the shader's primary color.
-		/// </summary>
-		public Func<Entity, DrawData?, Color> UpdatePrimary;
-
-		/// <summary>
-		/// Called before the shader is applied. Allows customization of the shader's secondary color.
-		/// </summary>
-		public Func<Entity, DrawData?, Color> UpdateSecondary;
-
-		/// <summary>
-		/// Called before the shader is applied.
-		/// </summary>
-		public Action<Entity, DrawData?> PreApply = new Action<Entity, DrawData?>(delegate(Entity e, DrawData? drawData) {});
-
-		/// <summary>
-		/// Called after the shader is applied.
-		/// </summary>
-		public Action<Entity, DrawData?> PostApply = new Action<Entity, DrawData?>(delegate(Entity e, DrawData? drawData) {});
-
-		/// <summary>
-		/// Called when the secondary shader is requested.
-		/// This is what's used for things such as dust emitted from dyed objects.
-		/// </summary>
-		public Func<Entity, ArmorShaderData> SecondaryShader;
-
-		public ModArmorShaderData(Ref<Effect> shader, string passName) : base(shader, passName){
-			//Set default delegate if not set by user
-			if(SecondaryShader == null) {
-				SecondaryShader = new Func<Entity, ArmorShaderData>(delegate(Entity e) {
-					return this;
-				});
+		private Color _primary = new Color(Vector3.One);
+		public Color Primary {
+			get { return _primary; }
+			set {
+				_primary = value;
+				UseColor(_primary);
 			}
 		}
 
-		public override void Apply(Entity e, DrawData? drawData)
-		{
-			if(UpdatePrimary != null) UseColor(UpdatePrimary(e, drawData));
-			if(UpdateSecondary != null) UseSecondaryColor(UpdateSecondary(e, drawData));
-			UseSaturation(saturation);
-			if(image != null) ShaderReflections.SetImage(this as ArmorShaderData, new Ref<Texture2D>(image));
-			SwapProgram(_passName);
+		private Color _secondary = new Color(Vector3.One);
+		public Color Secondary {
+			get { return _secondary; }
+			set {
+				_secondary = value;
+				UseSecondaryColor(_secondary);
+			}
+		}
 
+		private float _saturation = 1f;
+		public float Saturation {
+			get { return _saturation; }
+			set {
+				_saturation = value;
+				UseSaturation(_saturation);
+			}
+		}
+
+		private float _opacity = 1f;
+		public float Opacity {
+			get { return _opacity; }
+			set {
+				_opacity = value;
+				UseOpacity(_opacity);
+			}
+		}
+
+		public string PassName {
+			get { return _passName; }
+			set {
+				_passName = value;
+				SwapProgram(_passName);
+			}
+		}
+
+		public new Effect Shader {
+			get { return _shader != null ? _shader.Value : null; }
+			set { _shader = new Ref<Effect>(value != null ? value : null); }
+		}
+
+		public Texture2D Image {
+			get { return ShaderReflections.GetImage(this).Value; }
+			set { ShaderReflections.SetImage(this, new Ref<Texture2D>(value)); }
+		}
+
+		/// <summary>
+		/// Override this to change whether this shader autoloads.
+		/// </summary>
+		/// <param name="name"></param>
+		/// <returns></returns>
+		public virtual bool Autoload() => true;
+
+		/// <summary>
+		/// Called before the shader is applied.
+		/// Use this to change the shader's various properties or provide other effects.
+		/// </summary>
+		public virtual void PreApply(Entity e, DrawData? drawData) { }
+
+		public ModArmorShaderData() : base(ShaderLibMod.shaderRef, "ArmorColored") { }
+
+		public override void Apply(Entity e, DrawData? drawData) {
 			PreApply(e, drawData);
 			base.Apply(e, drawData);
-			PostApply(e, drawData);
 		}
 
-		public override ArmorShaderData GetSecondaryShader(Entity entity)
-		{
-			return SecondaryShader(entity);
-		}
-
-		public string GetPassName() {
-			return _passName;
-		}
-
-		//New methods to replace the old ones, no more "as ModArmorShaderData" being appended all the time
-		new public ModArmorShaderData UseColor(Color color)
-		{
-			return base.UseColor(color) as ModArmorShaderData;
-		}
-
-		new public ModArmorShaderData UseSecondaryColor(Color color)
-		{
-			return base.UseSecondaryColor(color) as ModArmorShaderData;
-		}
-
-		new public ModArmorShaderData UseSaturation(float sat)
-		{
-			return base.UseSaturation(sat) as ModArmorShaderData;
-		}
-
+		public virtual void Load(TagCompound tag) { }
+		public virtual TagCompound Save() => null;
 	}
 }
