@@ -9,3 +9,6 @@ Automatic functions of this mod:
 
 Patch 2.0.1:
 - Fix reverse gravity issues
+
+Patch 2.0.2:
+- Fix some bad draw settings
