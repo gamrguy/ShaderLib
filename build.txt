@@ -1,5 +1,5 @@
 author = thegamemaster1234
-version = 2.0
+version = 2.0.1
 displayName = Shader Library
 languageVersion = 6
 homepage = http://forums.terraria.org/index.php?threads/tgm1234s-mods.48725/

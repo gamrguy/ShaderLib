@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.ModLoader;
 
-namespace ShaderLib.Shaders
+namespace ShaderLib.System
 {
     public class ProjectileShader : GlobalProjectile
     {
@@ -16,7 +16,7 @@ namespace ShaderLib.Shaders
         //Resets the SpriteBatch after drawing projectile, to prepare for next projectile
         public override void PostDraw(Projectile projectile, SpriteBatch spriteBatch, Color lightColor)
         {
-            spriteBatch.Restart(Main.GameViewMatrix.ZoomMatrix);
+            spriteBatch.Restart(Main.GameViewMatrix.TransformationMatrix);
         }
     }
 }

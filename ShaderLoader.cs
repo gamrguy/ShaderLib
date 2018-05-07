@@ -1,5 +1,5 @@
 ﻿using System;
-using ShaderLib.Shaders;
+using ShaderLib.System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
@@ -38,6 +38,8 @@ namespace ShaderLib
 		}
 
 		internal static void SetupContent() {
+			if(Main.netMode == Terraria.ID.NetmodeID.Server) return;
+
 			foreach(var kvp in Mods) {
 				var ordered = kvp.Value
 					.GetTypes()
@@ -66,6 +68,8 @@ namespace ShaderLib
 		/// </summary>
 		/// <param name="mod"></param>
 		public static void RegisterMod(Mod mod) {
+			if(Main.netMode == Terraria.ID.NetmodeID.Server) return;
+
 			if(Mods == null) Initialize();
 
 			bool? b = mod.GetType().GetField("loading", BindingFlags.Instance | BindingFlags.NonPublic)?.GetValue(mod) as bool?;
@@ -93,6 +97,8 @@ namespace ShaderLib
 		/// <param name="shader"></param>
 		/// <param name="mod"></param>
 		public static void AddGlobalShader(GlobalShader shader, Mod mod) {
+			if(Main.netMode == Terraria.ID.NetmodeID.Server) return;
+
 			//bool? b = mod.GetType().GetField("loading", BindingFlags.Instance | BindingFlags.NonPublic)?.GetValue(mod) as bool?;
 			//if (b != null && !b.Value)
 			//	throw new Exception("AddGlobalShader can only be called from Mod.Load or Mod.Autoload");
@@ -119,10 +125,10 @@ namespace ShaderLib
 		/// <param name="shader"></param>
 		/// <param name="mod"></param>
 		/// <param name="item"></param>
-		public static int AddModArmorShaderData(ModArmorShaderData shader, Mod mod, int? item = null) {
-			//bool? b = mod.GetType().GetField("loading", BindingFlags.Instance | BindingFlags.NonPublic)?.GetValue(mod) as bool?;
-			//if (b != null && !b.Value)
-			//	throw new Exception("AddModArmorShaderData can only be called from Mod.Load or Mod.Autoload");
+		public static ShaderID AddModArmorShaderData(ModArmorShaderData shader, Mod mod, int? item = null) {
+			if(Main.netMode == Terraria.ID.NetmodeID.Server)
+				throw new Exception("Cannot load shaders on server");
+
 			if(!Mods.ContainsKey(mod.Name))
 				throw new Exception($"Mod {mod.Name} is not registered, please register before adding");
 			if(ModShaders[mod.Name].ContainsKey(shader.Name))
@@ -133,13 +139,13 @@ namespace ShaderLib
 			shader.Mod = mod;
 			ModShaders[mod.Name].Add(shader.Name, shader);
 			GameShaders.Armor.BindShader(item.Value, shader);
-			shader.ID = GameShaders.Armor.GetShaderIdFromItemId(item.Value);
-			ModShadersByID[shader.ID] = shader;
-			return shader.ID;
+			shader.ShaderID = new ShaderID(mod.Name, shader.Name, GameShaders.Armor.GetShaderIdFromItemId(item.Value));
+			ModShadersByID[shader.ShaderID.ID] = shader;
+			return shader.ShaderID;
 		}
 
 		public static T GetModShader<T>(string modName, string name) where T : ModArmorShaderData {
-			return (T)ModShaders[modName][name];
+			return (T)GetModShader(modName, name);
 		}
 
 		public static T GetModShader<T>(Mod mod, string name) where T : ModArmorShaderData {
@@ -158,6 +164,14 @@ namespace ShaderLib
 			return GetModShader<ModArmorShaderData>(mod.Name, name);
 		}
 
+		public static ModArmorShaderData GetModShader(string modName, string name) {
+			return ModShaders[modName][name];
+		}
+
+		public static ModArmorShaderData GetModShader(ShaderID id) {
+			return GetModShader(id.ModName, id.ShaderName);
+		}
+
 		public static T GetGlobalShader<T>(string modName, string name) where T : GlobalShader {
 			return (T)GlobalShaders[modName][name];
 		}
@@ -170,6 +184,15 @@ namespace ShaderLib
 			return GetGlobalShader<T>(mod.Name, typeof(T).Name);
 		}
 
+		public static ShaderID GetShaderID(Item item) {
+			if(item.modItem != null && item.modItem as IDye != null) return (item.modItem as IDye).DyeID;
+			return new ShaderID(GameShaders.Armor.GetShaderIdFromItemId(item.type));
+		}
+
+		public static int GetShaderIDNum(Item item) {
+			return GetShaderID(item).ID;
+		}
+
 		public static void ItemInventoryShader(Item item, SpriteBatch spriteBatch, Vector2 position, Rectangle frame, Color drawColor, Color itemColor, Vector2 origin, float scale) {
 			foreach(var mod in GlobalShaders.Values) {
 				foreach(var shader in mod.Values) {
@@ -179,7 +202,6 @@ namespace ShaderLib
 						spriteBatch.Restart(Main.UIScaleMatrix);
 
 						DrawData data = new DrawData();
-						data.origin = origin;
 						data.position = position - Main.screenPosition;
 						data.scale = new Vector2(scale, scale);
 						data.sourceRect = frame;
@@ -197,13 +219,11 @@ namespace ShaderLib
 					int shaderID = shader.ItemWorldShader(item, spriteBatch, lightColor, alphaColor, ref rotation, ref scale, whoAmI);
 
 					if(shaderID > 0) {
-						spriteBatch.Restart(Main.GameViewMatrix.ZoomMatrix);
-
+						spriteBatch.Restart(Main.LocalPlayer.gravDir == 1f? Main.GameViewMatrix.ZoomMatrix : Main.GameViewMatrix.TransformationMatrix);
+						
 						DrawData data = new DrawData();
-						data.origin = item.Center;
 						data.position = item.position - Main.screenPosition;
 						data.scale = new Vector2(scale, scale);
-						//data.sourceRect = item.;
 						data.texture = Main.itemTexture[item.type];
 						data.rotation = rotation;
 						GameShaders.Armor.ApplySecondary(shaderID, Main.player[item.owner], data);
@@ -218,10 +238,9 @@ namespace ShaderLib
 					int shaderID = shader.ProjectileShader(projectile, spriteBatch, lightColor);
 
 					if(shaderID > 0) {
-						spriteBatch.Restart(Main.GameViewMatrix.ZoomMatrix);
+						spriteBatch.Restart(Main.LocalPlayer.gravDir == 1f ? Main.GameViewMatrix.ZoomMatrix : Main.GameViewMatrix.TransformationMatrix);
 
 						DrawData data = new DrawData();
-						data.origin = projectile.Center;
 						data.position = projectile.position - Main.screenPosition;
 						data.scale = new Vector2(projectile.scale, projectile.scale);
 						data.texture = Main.projectileTexture[projectile.type];
@@ -238,10 +257,9 @@ namespace ShaderLib
 					int shaderID = shader.NPCShader(npc, spriteBatch, drawColor);
 
 					if(shaderID > 0) {
-						spriteBatch.Restart(Main.GameViewMatrix.ZoomMatrix);
+						spriteBatch.Restart(Main.LocalPlayer.gravDir == 1f ? Main.GameViewMatrix.ZoomMatrix : Main.GameViewMatrix.TransformationMatrix);
 
 						DrawData data = new DrawData();
-						data.origin = npc.Center;
 						data.position = npc.position - Main.screenPosition;
 						data.scale = new Vector2(npc.scale, npc.scale);
 						data.texture = Main.npcTexture[npc.type];

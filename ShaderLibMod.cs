@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.Graphics.Shaders;
 using Terraria.ModLoader;
+using ShaderLib.System;
 
 namespace ShaderLib
 {

@@ -4,7 +4,6 @@ using Terraria;
 using Terraria.Graphics.Shaders;
 using Terraria.ModLoader;
 using Terraria.ID;
-using ShaderLib.Dyes;
 
 namespace ShaderLib
 {
@@ -38,7 +37,7 @@ namespace ShaderLib
 			Player player = drawInfo.drawPlayer;
 			if(player.head == 0 && player.dye[0] != null) {
 				Item dye = drawInfo.drawPlayer.dye[0];
-				if(dye.modItem != null && dye.modItem as IDye != null) data.hairShader = (dye.modItem as IDye).DyeID;
+				if(dye.modItem != null && dye.modItem as IDye != null) data.hairShader = (dye.modItem as IDye).DyeID.ID;
 				else data.hairShader = GameShaders.Armor.GetShaderIdFromItemId(drawInfo.drawPlayer.dye[0].type);
 			}
 		}

@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Terraria;
 
-namespace ShaderLib.Dyes
+namespace ShaderLib.System
 {
 	public enum ShirtType
 	{

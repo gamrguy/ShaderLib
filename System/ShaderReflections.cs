@@ -6,7 +6,7 @@ using Terraria;
 using Terraria.Graphics.Shaders;
 using Terraria.ModLoader;
 
-namespace ShaderLib
+namespace ShaderLib.System
 {
 	/// <summary>
 	/// A helper class with many functions allowing access to normally private

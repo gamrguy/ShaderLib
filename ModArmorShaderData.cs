@@ -4,9 +4,9 @@ using Terraria;
 using Terraria.DataStructures;
 using Terraria.Graphics.Shaders;
 using Terraria.ModLoader;
-using Terraria.ModLoader.IO;
+using ShaderLib.System;
 
-namespace ShaderLib.Shaders
+namespace ShaderLib
 {
 	/// <summary>
 	/// A class designed for the creation of custom shaders.
@@ -15,7 +15,7 @@ namespace ShaderLib.Shaders
 	{
 		public Mod Mod { get; internal set; }
 		public virtual string Name => GetType().Name;
-		public int ID { get; internal set; }
+		public ShaderID ShaderID { get; internal set; }
 		public virtual int? BoundItemID => null;
 
 		private Color _primary = new Color(Vector3.One);
@@ -91,8 +91,5 @@ namespace ShaderLib.Shaders
 			PreApply(e, drawData);
 			base.Apply(e, drawData);
 		}
-
-		public virtual void Load(TagCompound tag) { }
-		public virtual TagCompound Save() => null;
 	}
 }
