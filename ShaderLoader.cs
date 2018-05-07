@@ -245,6 +245,7 @@ namespace ShaderLib
 						data.scale = new Vector2(projectile.scale, projectile.scale);
 						data.texture = Main.projectileTexture[projectile.type];
 						data.sourceRect = data.texture.Frame(1, Main.projFrames[projectile.type], 0, projectile.frame);
+						data.rotation = projectile.rotation;
 						GameShaders.Armor.ApplySecondary(shaderID, Main.player[projectile.owner], data);
 					}
 				}
@@ -264,6 +265,7 @@ namespace ShaderLib
 						data.scale = new Vector2(npc.scale, npc.scale);
 						data.texture = Main.npcTexture[npc.type];
 						data.sourceRect = npc.frame;//data.texture.Frame(1, Main.npcFrameCount[npc.type], 0, npc.frame);
+						data.rotation = npc.rotation;
 						GameShaders.Armor.ApplySecondary(shaderID, npc, data);
 					}
 				}
