@@ -8,7 +8,7 @@ namespace ShaderLib.System
 	/// </summary>
 	public static class SpriteBatchUtils
 	{
-		public static void Restart(this SpriteBatch sb, Matrix scaleMatrix, bool forShader = true) {
+		public static void Restart(this SpriteBatch sb, Matrix scaleMatrix, bool forShader = true, bool worldDraw = true) {
 			Rectangle scissor = sb.GraphicsDevice.ScissorRectangle;
 			
 			sb.End();
@@ -16,7 +16,7 @@ namespace ShaderLib.System
 			sb.Begin(
 				forShader ? SpriteSortMode.Immediate : SpriteSortMode.Deferred, 
 				BlendState.AlphaBlend, 
-				SamplerState.LinearClamp, 
+				worldDraw ? SamplerState.PointClamp : SamplerState.LinearClamp, 
 				sb.GraphicsDevice.DepthStencilState,
 				sb.GraphicsDevice.RasterizerState, 
 				null,

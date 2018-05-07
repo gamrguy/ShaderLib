@@ -15,7 +15,7 @@ namespace ShaderLib.System
 
 		public override void PostDrawInInventory(Item item, SpriteBatch spriteBatch, Vector2 position, Rectangle frame, Color drawColor, Color itemColor, Vector2 origin, float scale)
 		{
-			spriteBatch.Restart(Main.UIScaleMatrix, false);
+			spriteBatch.Restart(Main.UIScaleMatrix, false, false);
         }
 
 		public override bool PreDrawInWorld(Item item, SpriteBatch spriteBatch, Color lightColor, Color alphaColor, ref float rotation, ref float scale, int whoAmI)

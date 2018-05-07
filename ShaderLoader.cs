@@ -199,7 +199,7 @@ namespace ShaderLib
 					int shaderID = shader.ItemInventoryShader(item, spriteBatch, position, frame, drawColor, itemColor, origin, scale);
 
 					if(shaderID > 0) {
-						spriteBatch.Restart(Main.UIScaleMatrix);
+						spriteBatch.Restart(Main.UIScaleMatrix, worldDraw: false);
 
 						DrawData data = new DrawData();
 						data.position = position - Main.screenPosition;
