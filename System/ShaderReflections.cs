@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Reflection;
+using log4net.Repository.Hierarchy;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
@@ -111,7 +112,7 @@ namespace ShaderLib.System
 			list.Add(data);
 			lookup.Add(itemID, list.Count);
 			IncrementShaderCount();
-			ErrorLogger.Log("Bound shader: " + list.Count);
+			ShaderLibMod.instance.Logger.Info("Bound shader: " + list.Count);
 		}
 
 		/// <summary>
@@ -127,7 +128,7 @@ namespace ShaderLib.System
 			list.Add(data);
 			lookup.Add(customShaders + int.MinValue, list.Count);
 			IncrementShaderCount();
-			ErrorLogger.Log("Bound unlinked shader with ID: " + (customShaders + int.MinValue));
+			ShaderLibMod.instance.Logger.Info("Bound unlinked shader with ID: " + (customShaders + int.MinValue));
 			return customShaders++ + int.MinValue;
 		}
 	}

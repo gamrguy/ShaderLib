@@ -12,7 +12,7 @@ namespace ShaderLib.System
 
 	public static class VariantHandler
 	{
-		public static readonly Dictionary<int, ShirtType[]> variants = new Dictionary<int, ShirtType[]>
+		public static Dictionary<int, ShirtType[]> variants = new Dictionary<int, ShirtType[]>
 		{
 			{ 0, new ShirtType[] { ShirtType.UNDERSHIRT, ShirtType.SHIRT, ShirtType.UNDERSHIRT, ShirtType.NONE } },
 			{ 1, new ShirtType[] { ShirtType.UNDERSHIRT, ShirtType.SHIRT, ShirtType.UNDERSHIRT, ShirtType.NONE } },
@@ -26,10 +26,14 @@ namespace ShaderLib.System
 			{ 9, new ShirtType[] { ShirtType.UNDERSHIRT, ShirtType.SHIRT, ShirtType.NONE, ShirtType.SHIRT} }
 		};
 
-		public static void ApplyVariant(int var, int shirtID, int ushirtID, List<int> dat) {
-			if(dat.Count != variants[var].Length) return;
-			for(int i = 0; i < variants[var].Length; i++) {
-				switch(variants[var][i]) {
+		public static void ApplyVariant(int var, int shirtID, int ushirtID, List<int> dat)
+		{
+			if (dat == null || variants == null) return;
+			if (dat.Count != variants[var].Length) return;
+			for (int i = 0; i < variants[var].Length; i++)
+			{
+				switch (variants[var][i])
+				{
 					case (ShirtType.SHIRT):
 						ModDyePlayer.EditData(shirtID, dat[i]);
 						break;

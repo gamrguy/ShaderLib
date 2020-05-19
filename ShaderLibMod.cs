@@ -30,6 +30,8 @@ namespace ShaderLib
 		}
 
 		public override void Load() {
+			Logger.InfoFormat("{0}: ", Name);
+
 			//Save the state of the vanilla shader listings.
 			vanillaShaders = new List<ArmorShaderData>(ShaderReflections.GetShaderList());
 			vanillaBindings = new Dictionary<int, int>(ShaderReflections.GetShaderBindings());
@@ -50,6 +52,8 @@ namespace ShaderLib
 			ShaderReflections.SetShaderCount(vanillaShaders.Count);
 
 			instance = null;
+			shaderRef = null;
+			VariantHandler.variants = null;
 			ShaderLoader.Unload();
 		}
 	}

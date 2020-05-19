@@ -14,9 +14,7 @@ namespace ShaderLib.System
 		}
 
 		public override void PostDraw(NPC npc, SpriteBatch spriteBatch, Color drawColor)
-		{
-            spriteBatch.Restart(Main.GameViewMatrix.TransformationMatrix);
-        }
+			=> spriteBatch.Restart(Main.GameViewMatrix.TransformationMatrix);
 	}
 }
 

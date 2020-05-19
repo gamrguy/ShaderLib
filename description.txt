@@ -7,6 +7,11 @@ Automatic functions of this mod:
 - Fixes look of special dyes on pets and grappling hooks
 - Allows use of armor dye on Familiar Wig
 
+Update 2.1.0:
+- Code updates to avoid deprecation
+- A couple of edge-case fixes
+- Possibly other things but probably not
+
 Patch 2.0.1:
 - Fix reverse gravity issues
 

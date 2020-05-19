@@ -15,7 +15,7 @@ namespace ShaderLib
 	/// A server-side ShaderID will have ID set to 0.
 	/// Vanilla-style shaders will always have an ID set.
 	/// </summary>
-	public struct ShaderID : IEquatable<ShaderID>, IEquatable<int>
+	public class ShaderID : IEquatable<ShaderID>, IEquatable<int>
 	{
 		public string ModName { get; internal set; }
 		public string ShaderName { get; internal set; }
@@ -30,7 +30,7 @@ namespace ShaderLib
 		public ShaderID(string modName, string shaderName) {
 			ModName = modName;
 			ShaderName = shaderName;
-			ErrorLogger.Log(ModName + " | " + ShaderName);
+			ShaderLibMod.instance.Logger.Info(ModName + " | " + ShaderName);
 			if(Main.netMode == NetmodeID.Server) ID = 0;
 			else ID = ShaderLoader.GetModShader(ModName, ShaderName).ShaderID.ID;
 		}

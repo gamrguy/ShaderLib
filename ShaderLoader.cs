@@ -201,11 +201,13 @@ namespace ShaderLib
 					if(shaderID > 0) {
 						spriteBatch.Restart(Main.UIScaleMatrix, worldDraw: false);
 
-						DrawData data = new DrawData();
-						data.position = position - Main.screenPosition;
-						data.scale = new Vector2(scale, scale);
-						data.sourceRect = frame;
-						data.texture = Main.itemTexture[item.type];
+						DrawData data = new DrawData
+						{
+							position = position - Main.screenPosition,
+							scale = new Vector2(scale, scale),
+							sourceRect = frame,
+							texture = Main.itemTexture[item.type]
+						};
 						GameShaders.Armor.ApplySecondary(shaderID, Main.player[item.owner], data);
 						break;
 					}
@@ -220,12 +222,14 @@ namespace ShaderLib
 
 					if(shaderID > 0) {
 						spriteBatch.Restart(Main.LocalPlayer.gravDir == 1f? Main.GameViewMatrix.ZoomMatrix : Main.GameViewMatrix.TransformationMatrix);
-						
-						DrawData data = new DrawData();
-						data.position = item.position - Main.screenPosition;
-						data.scale = new Vector2(scale, scale);
-						data.texture = Main.itemTexture[item.type];
-						data.rotation = rotation;
+
+						DrawData data = new DrawData
+						{
+							position = item.position - Main.screenPosition,
+							scale = new Vector2(scale, scale),
+							texture = Main.itemTexture[item.type],
+							rotation = rotation
+						};
 						GameShaders.Armor.ApplySecondary(shaderID, Main.player[item.owner], data);
 					}
 				}
@@ -240,12 +244,14 @@ namespace ShaderLib
 					if(shaderID > 0) {
 						spriteBatch.Restart(Main.LocalPlayer.gravDir == 1f ? Main.GameViewMatrix.ZoomMatrix : Main.GameViewMatrix.TransformationMatrix);
 
-						DrawData data = new DrawData();
-						data.position = projectile.position - Main.screenPosition;
-						data.scale = new Vector2(projectile.scale, projectile.scale);
-						data.texture = Main.projectileTexture[projectile.type];
+						DrawData data = new DrawData
+						{
+							position = projectile.position - Main.screenPosition,
+							scale = new Vector2(projectile.scale, projectile.scale),
+							texture = Main.projectileTexture[projectile.type],
+							rotation = projectile.rotation
+						};
 						data.sourceRect = data.texture.Frame(1, Main.projFrames[projectile.type], 0, projectile.frame);
-						data.rotation = projectile.rotation;
 						GameShaders.Armor.ApplySecondary(shaderID, Main.player[projectile.owner], data);
 					}
 				}
@@ -260,12 +266,14 @@ namespace ShaderLib
 					if(shaderID > 0) {
 						spriteBatch.Restart(Main.LocalPlayer.gravDir == 1f ? Main.GameViewMatrix.ZoomMatrix : Main.GameViewMatrix.TransformationMatrix);
 
-						DrawData data = new DrawData();
-						data.position = npc.position - Main.screenPosition;
-						data.scale = new Vector2(npc.scale, npc.scale);
-						data.texture = Main.npcTexture[npc.type];
-						data.sourceRect = npc.frame;//data.texture.Frame(1, Main.npcFrameCount[npc.type], 0, npc.frame);
-						data.rotation = npc.rotation;
+						DrawData data = new DrawData
+						{
+							position = npc.position - Main.screenPosition,
+							scale = new Vector2(npc.scale, npc.scale),
+							texture = Main.npcTexture[npc.type],
+							sourceRect = npc.frame,//data.texture.Frame(1, Main.npcFrameCount[npc.type], 0, npc.frame);
+							rotation = npc.rotation
+						};
 						GameShaders.Armor.ApplySecondary(shaderID, npc, data);
 					}
 				}
