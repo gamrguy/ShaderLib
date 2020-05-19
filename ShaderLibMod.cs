@@ -55,7 +55,6 @@ namespace ShaderLib
 
 			instance = null;
 			shaderRef = null;
-			VariantHandler.variants = null;
 			ShaderLoader.Unload();
 		}
 	}
