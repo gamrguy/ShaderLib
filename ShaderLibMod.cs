@@ -21,7 +21,7 @@ namespace ShaderLib
 		public const short maxVanillaID = 116;
 
 		//Provides easy access to this object now needed instead of pixelShader directly.
-		public static Ref<Effect> shaderRef = new Ref<Effect>(Main.pixelShader);
+		public static Ref<Effect> shaderRef;
 
 		public ShaderLibMod() {
 			Properties = new ModProperties() {
@@ -31,6 +31,8 @@ namespace ShaderLib
 
 		public override void Load() {
 			Logger.InfoFormat("{0}: ", Name);
+
+			shaderRef = new Ref<Effect>(Main.pixelShader);
 
 			//Save the state of the vanilla shader listings.
 			vanillaShaders = new List<ArmorShaderData>(ShaderReflections.GetShaderList());
