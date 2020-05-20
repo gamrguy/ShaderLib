@@ -98,15 +98,15 @@ namespace ShaderLib.System
 
 		private void ApplyArmorShaders(ref PlayerDrawInfo drawInfo)
 		{
-			if (player.HeadDye() != null)
+			if (!player.HeadDye().IsAir)
 			{
 				drawInfo.headArmorShader = ShaderLoader.GetShaderIDNum(player.HeadDye());
 			}
-			if (player.BodyDye() != null)
+			if (!player.BodyDye().IsAir)
 			{
 				drawInfo.bodyArmorShader = ShaderLoader.GetShaderIDNum(player.BodyDye());
 			}
-			if (player.LegsDye() != null)
+			if (!player.LegsDye().IsAir)
 			{
 				drawInfo.legArmorShader = ShaderLoader.GetShaderIDNum(player.LegsDye());
 				player.cLegs = ShaderLoader.GetShaderIDNum(player.LegsDye());
@@ -387,8 +387,8 @@ namespace ShaderLib.System
 			layers.Insert(layers.IndexOf(PlayerLayer.Arms) + 1, armsLayer);
 			layers.Insert(layers.IndexOf(PlayerLayer.Head) + 1, hairLayer);
 			#region debug
-			
-			/*x = 25;
+			/*
+			x = 25;
 			y = 25;
 			count = 0;
 
