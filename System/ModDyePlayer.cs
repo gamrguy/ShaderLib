@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Microsoft.Xna.Framework;
+using System.Collections.Generic;
 using Terraria;
 using Terraria.Graphics.Shaders;
 using Terraria.ID;
@@ -340,7 +341,7 @@ namespace ShaderLib.System
 				EditData(data.bodySkinShader, tracker + 1);
 		});
 
-		private PlayerLayer hairLayer = new PlayerLayer("ShaderLib", "ArmsShader", (PlayerDrawInfo drawInfo) => {
+		private PlayerLayer hairLayer = new PlayerLayer("ShaderLib", "HairShader", (PlayerDrawInfo drawInfo) => {
 			Player player = drawInfo.drawPlayer;
 
 			if(player.head <= 0 || drawInfo.drawHair || drawInfo.drawAltHair) {
@@ -386,8 +387,8 @@ namespace ShaderLib.System
 			layers.Insert(layers.IndexOf(PlayerLayer.Arms) + 1, armsLayer);
 			layers.Insert(layers.IndexOf(PlayerLayer.Head) + 1, hairLayer);
 			#region debug
-			/*
-			x = 25;
+			
+			/*x = 25;
 			y = 25;
 			count = 0;
 
