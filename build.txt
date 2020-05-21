@@ -1,5 +1,5 @@
 author = thegamemaster1234
-version = 2.1.1
+version = 2.1.2
 displayName = Shader Library
 languageVersion = 6
 homepage = http://forums.terraria.org/index.php?threads/tgm1234s-mods.48725/
@@ -8,3 +8,4 @@ hideResources = false
 includeSource = true
 buildIgnore = *.csproj, *.user, obj/*, bin/*, .vs/*
 includePDB = true
+sortAfter = WeaponOut, WeaponOutLite

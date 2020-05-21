@@ -7,8 +7,8 @@ Automatic functions of this mod:
 - Fixes look of special dyes on pets and grappling hooks
 - Allows use of armor dye on Familiar Wig
 
-Patch 2.1.1:
-- Tiny fix that may or may not have done anything
+Patch 2.1.2:
+- Added WeaponOut support for held item dyeing
 
 Update 2.1.0:
 - Code updates to avoid deprecation

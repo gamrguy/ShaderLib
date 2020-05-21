@@ -350,6 +350,19 @@ namespace ShaderLib.System
 			}
 		});
 
+		private PlayerLayer weaponOut = new PlayerLayer("ShaderLib", "WeaponOutSupport", (PlayerDrawInfo drawInfo) => {
+			Player player = drawInfo.drawPlayer;
+
+			Item heldItem = player.inventory[player.selectedItem];
+
+			if (heldItem == null || heldItem.IsAir || heldItem.holdStyle != 0) return;
+
+			int shaderID = 0;
+			ShaderLoader.HeldItemShader(out shaderID, heldItem, drawInfo);
+			for (int i = tracker; i < Main.playerDrawData.Count; i++)
+				EditData(shaderID, i);
+		});
+
 		/*private static int x = 25;
 		private static int y = 25;
 		private static int count = 0;
@@ -386,6 +399,23 @@ namespace ShaderLib.System
 			layers.Insert(layers.IndexOf(PlayerLayer.Arms), trackerLayer);
 			layers.Insert(layers.IndexOf(PlayerLayer.Arms) + 1, armsLayer);
 			layers.Insert(layers.IndexOf(PlayerLayer.Head) + 1, hairLayer);
+
+			// WeaponOut support
+			if (ModLoader.GetMod("WeaponOutLite") != null || ModLoader.GetMod("WeaponOut") != null)
+			{
+				int idx_item = layers.FindIndex((layer) => { return layer.mod == "WeaponOut" && layer.Name == "HeldItem"; });
+				int idx_back = layers.FindIndex((layer) => { return layer.mod == "WeaponOut" && layer.Name == "HairBack"; });
+				if (idx_item > -1)
+				{
+					layers.Insert(idx_item, trackerLayer);
+					layers.Insert(idx_item + 2, weaponOut);
+				}
+				if (idx_back > -1)
+				{
+					layers.Insert(idx_back, trackerLayer);
+					layers.Insert(idx_back + 2, weaponOut);
+				}
+			}
 			#region debug
 			/*
 			x = 25;
